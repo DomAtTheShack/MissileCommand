@@ -14,27 +14,5 @@ enum ID {
     EXPLO,
     PLANE
 };
-class GameID {
-
-public:
-    GameID();
-    ~GameID();
-    int getObjectID();
-private:
-    int ObjectID;
-
-};
-
-GameID::GameID() {
-
-}
-
-GameID::~GameID() {
-
-}
-
-int GameID::getObjectID() {
-    return 0;
-}
 
 #endif //MISSILECOMMAND_GAMEID_H

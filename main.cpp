@@ -1,20 +1,29 @@
 #include <SDL.h>
 #include <iostream>
-#include "GameObjects/Game.h"
-#include "GameObjects/TextureManager.h"
+#include "GameHeaders/Game.h"
+#include "GameHeaders/TextureManager.h"
+#include "GameHeaders/GameObject.h"
+#include "GameHeaders/Handler.h"
 
 Game *game = nullptr;
+Handler *handler = nullptr;
 
 int main(int argc, char* args []) {
-    game = new Game();
+    handler = new Handler();
+
+    game = new Game(handler);
 
     game->init("Missile Command", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 700, false);
+
 
     Uint32 frameStart, frameTime;
     const int FPS = 60;
     const int frameDelay = 1000 / FPS;  // milliseconds per frame
     Uint32 secondStart = SDL_GetTicks();
     int frames = 0;
+
+    auto *player = new GameObject("../assets/player.png", 100, 100);
+    handler->addObject(player);
 
     while (game->running()) {
         frameStart = SDL_GetTicks();

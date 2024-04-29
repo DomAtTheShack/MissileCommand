@@ -7,6 +7,7 @@
 
 
 #include <SDL.h>
+#include <vector>
 
 class GameObject {
 public:
@@ -16,12 +17,14 @@ public:
     void Update();
     void Render();
 
+
 private:
     int xPos;
     int yPos;
     SDL_Texture *texture;
     SDL_Rect srcRect;
     SDL_Rect destRect;
+    std::vector<GameObject> GameObjects;
 };
 
 

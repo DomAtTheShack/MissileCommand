@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <cstdio>
 #include <vector>
+#include "Handler.h"
 
 #ifndef PROJECT_NAME_GAME_H
 #define PROJECT_NAME_GAME_H
@@ -12,7 +13,7 @@
 class Game {
 
 public:
-    Game();
+    Game(Handler *handler);
     ~Game();
 
     void init(const char* title, int xPos, int yPos, int width, int height, bool fullscreen);
@@ -24,10 +25,15 @@ public:
 
     bool running() const;
     static SDL_Renderer *renderer;
-    static Uint16 nextID;
+    static int nextID;
+
+    void addObject(GameObject &object);
+
+    void removeObject(GameObject &object);
 private:
     bool isRunning;
     SDL_Window *window;
+    Handler *handler;
 
 };
 

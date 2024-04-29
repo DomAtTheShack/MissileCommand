@@ -15,8 +15,10 @@ class Handler
 public:
     void Update();
     void Render();
-    void addObject(GameObject &object);
-    void removeObject(ID &objectID);
+
+    void addObject(GameObject *object);
+
+    void removeObject(GameObject *object);
     bool isUp() const;
     void setUp(bool up);
     bool isDown() const;
@@ -25,8 +27,9 @@ public:
     void setRight(bool right);
     bool isLeft() const;
     void setLeft(bool left);
+
+    std::vector<GameObject *> GameObjects;
 private:
-    std::vector<GameObject> GameObjects;
     bool up;
     bool down;
     bool right;

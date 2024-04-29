@@ -4,6 +4,7 @@
 
 #include "Handler.h"
 #include "GameID.h"
+#include <algorithm> //Needed for std::remove
 
 bool Handler::isUp() const {
     return up;
@@ -37,21 +38,27 @@ void Handler::setLeft(const bool left) {
     this->left = left;
 }
 
-void Handler::Update()
-{
-
+void Handler::Update() {
+    for (GameObject *x: GameObjects) {
+        x->Update();
+    }
 }
 
 void Handler::Render() {
-
+    for (GameObject *x: GameObjects) {
+        x->Render();
+    }
 }
 
-void Handler::addObject(GameObject &object)
-{
+void Handler::removeObject(GameObject *object) {
+    auto it = std::find(GameObjects.begin(), GameObjects.end(), object);
+    if (it != GameObjects.end()) {
+        delete *it;  // Deallocate memory
+        GameObjects.erase(it); // Remove from vector
+    }
+}
+
+void Handler::addObject(GameObject *object) {
     GameObjects.push_back(object);
 }
 
-void Handler::removeObject(ID &objectID)
-{
-
-}

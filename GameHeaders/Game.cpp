@@ -3,20 +3,20 @@
 //
 
 #include <iostream>
+#include <utility>
 #include "SDL_image.h"
 #include "Game.h"
 #include "TextureManager.h"
 #include "GameObject.h"
 
-Game::Game() {
-    nextID = 0;
+int Game::nextID = 0;
+
+Game::Game(Handler *hand) {
+    handler = hand;
 }
 
-Game::~Game() {
+Game::~Game() = default;
 
-}
-
-GameObject* player;
 SDL_Renderer* Game::renderer = nullptr;
 
 void Game::init(const char *title, int xPos, int yPos, int width, int height, bool fullscreen) {
@@ -47,7 +47,6 @@ void Game::init(const char *title, int xPos, int yPos, int width, int height, bo
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // Set the background color to purple
         SDL_Log("SubSystem Initialed");
     }
-    player = new GameObject("../assets/player.png"  , 100, 100);
 }
 
 void Game::handleEvents()
@@ -67,12 +66,12 @@ void Game::handleEvents()
 }
 
 void Game::update() {
-    player->Update();
+    handler->Update();
 }
 
 void Game::render() {
     SDL_RenderClear(renderer);
-    player->Render();
+    handler->Render();
     SDL_RenderPresent(renderer);
 }
 
@@ -85,4 +84,12 @@ void Game::clean() {
 
 bool Game::running() const {
     return isRunning;
+}
+
+void Game::addObject(GameObject &object) {
+    handler->addObject(&object);
+}
+
+void Game::removeObject(GameObject &object) {
+    handler->removeObject(&object);
 }
