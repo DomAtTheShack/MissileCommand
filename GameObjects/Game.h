@@ -3,6 +3,7 @@
 //
 #include <SDL.h>
 #include <cstdio>
+#include <vector>
 
 #ifndef PROJECT_NAME_GAME_H
 #define PROJECT_NAME_GAME_H
@@ -22,11 +23,11 @@ public:
     void clean();
 
     bool running() const;
-
+    static SDL_Renderer *renderer;
+    static Uint16 nextID;
 private:
     bool isRunning;
     SDL_Window *window;
-    SDL_Renderer *renderer;
 
 };
 

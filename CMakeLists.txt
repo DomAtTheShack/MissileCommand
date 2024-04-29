@@ -10,7 +10,10 @@ add_executable(${PROJECT_NAME} main.cpp
         GameObjects/TextureManager.cpp
         GameObjects/TextureManager.h
         GameObjects/GameObject.cpp
-        GameObjects/GameObject.h)
+        GameObjects/GameObject.h
+        GameObjects/Handler.cpp
+        GameObjects/Handler.h
+        GameObjects/GameID.h)
 
 message("Binary Directory: ${CMAKE_BINARY_DIR}")
 
