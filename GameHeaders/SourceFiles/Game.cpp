@@ -8,11 +8,13 @@
 #include "../Game.h"
 #include "../TextureManager.h"
 #include "../GameObject.h"
+#include "../Background.h"
 
 int Game::nextID = 0;
 
 Game::Game(Handler *hand) {
     handler = hand;
+    background = nullptr;
 }
 
 Game::~Game() = default;
@@ -45,8 +47,9 @@ void Game::init(const char *title, int xPos, int yPos, int width, int height, bo
         }else
             SDL_Log("Created renderer and Window");
         isRunning = true;
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // Set the background color to purple
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // Set the background color to white
         SDL_Log("SubSystem Initialed");
+        background = new Background("../assets/back.bmp");
     }
 }
 
@@ -67,11 +70,13 @@ void Game::handleEvents()
 }
 
 void Game::update() {
+    background->Update();  // update background
     handler->Update();
 }
 
 void Game::render() {
     SDL_RenderClear(renderer);
+    background->Render();  // render background
     handler->Render();
     SDL_RenderPresent(renderer);
 }

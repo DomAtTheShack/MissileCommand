@@ -5,6 +5,7 @@
 #include <cstdio>
 #include <vector>
 #include "Handler.h"
+#include "Background.h"
 
 #ifndef PROJECT_NAME_GAME_H
 #define PROJECT_NAME_GAME_H
@@ -35,7 +36,7 @@ public:
 private:
     bool isRunning;
     Handler *handler;
-
+    Background* background;
 };
 
 

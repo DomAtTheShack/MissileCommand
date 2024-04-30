@@ -1,29 +1,22 @@
-//
-// Created by dominichann on 4/29/24.
-//
+#ifndef MISSILE_COMMAND_BACKGROUND_H
+#define MISSILE_COMMAND_BACKGROUND_H
 
-#ifndef MISSILECOMMAND_BACKGROUND_H
-#define MISSILECOMMAND_BACKGROUND_H
+#include <SDL2/SDL.h>
 
-
-#include <SDL.h>
-#include "GameObject.h"
-
-class Background : public GameObject {
+class Background {
 public:
-    Background(const char *textureSheet);
-
+    Background(const char* texture);
     ~Background();
 
-    void Update() override;
-
-    void Render() override;
+    void Update();
+    void Render();
 
 private:
-    int xPos, yPos;
-    SDL_Texture *texture;
-    SDL_Rect srcRect, destRect;
+    SDL_Texture* texture = nullptr;
+    SDL_Rect sdlRect;
+    const int speed = 5; // Modify the speed value to your liking
+    int xPos = 0;
+    int yPos = 0;
 };
 
-
-#endif //MISSILECOMMAND_BACKGROUND_H
+#endif

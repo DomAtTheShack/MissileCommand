@@ -12,6 +12,7 @@ class TextureManager {
 public:
     static SDL_Texture* LoadTexture(const char* fileName);
 
+    static SDL_Texture *LoadBMP(const char *textureFile);
 };
 
 

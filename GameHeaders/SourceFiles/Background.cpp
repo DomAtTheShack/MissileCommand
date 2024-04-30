@@ -1,27 +1,34 @@
+#include <iostream>
 #include "../Background.h"
+#include "../Game.h"
 #include "../TextureManager.h"
 
-Background::Background(const char *texturesheet) : GameObject(texturesheet, 0, 0) {}
+Background::Background(const char *textureFile) {
+    texture = TextureManager::LoadBMP(textureFile);
+    if (texture == nullptr) {
+        SDL_ShowSimpleMessageBox(0, "Texture init error", SDL_GetError(), nullptr);
+    }
+    xPos = 0;
+    yPos = 0;
+    sdlRect.x = xPos;
+    sdlRect.y = yPos;
+    sdlRect.w = 1200; // Replace these with your values
+    sdlRect.h = 700; // Replace these with your values
+}
 
-Background::~Background() = default;
+Background::~Background() {
+    SDL_DestroyTexture(texture);
+}
 
-void Background::Update() {
-    srcRect.h = 538;
-    srcRect.w = 226;
-    srcRect.x = 0;
-    srcRect.y = 0;
-
-    destRect.x = 0;
-    destRect.y = 0;
-
-    // Use SDL's function to get the window size
-    int windowWidth, windowHeight;
-    SDL_GetWindowSize(Game::window, &windowWidth, &windowHeight);
-
-    destRect.w = windowWidth;
-    destRect.h = windowHeight;
+void Background::Update(){
+    // Example of how to make your background move downwards over time
+    yPos += speed;
+    sdlRect.y += speed;
+    if (sdlRect.y > 1200 - 1200) {
+        sdlRect.y = 0;
+    }
 }
 
 void Background::Render() {
-    GameObject::Render(); // Call the render method of the base class
+    SDL_RenderCopy(Game::renderer, texture, nullptr, &sdlRect);
 }

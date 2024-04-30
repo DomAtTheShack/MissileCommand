@@ -19,3 +19,9 @@ SDL_Texture *TextureManager::LoadTexture(const char *fileName)
     SDL_FreeSurface(tempSurface);
     return texture;
 }
+SDL_Texture* TextureManager::LoadBMP(const char* textureFile) {
+    SDL_Surface* tempSurface = SDL_LoadBMP(textureFile);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(Game::renderer, tempSurface);
+    SDL_FreeSurface(tempSurface);
+    return texture;
+}
