@@ -2,8 +2,8 @@
 // Created by dominichann on 4/29/24.
 //
 
-#include "Handler.h"
-#include "GameID.h"
+#include "../Handler.h"
+#include "../GameID.h"
 #include <algorithm> //Needed for std::remove
 
 bool Handler::isUp() const {

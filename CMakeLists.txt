@@ -5,15 +5,17 @@ set(CMAKE_CXX_STANDARD 14)
 
 # Must set the path to the main.cpp, for example: scripts/main.cpp if it is inside a folder
 add_executable(${PROJECT_NAME} main.cpp
-        GameHeaders/Game.cpp
+        GameHeaders/SourceFiles/Game.cpp
         GameHeaders/Game.h
-        GameHeaders/TextureManager.cpp
+        GameHeaders/SourceFiles/TextureManager.cpp
         GameHeaders/TextureManager.h
-        GameHeaders/GameObject.cpp
+        GameHeaders/SourceFiles/GameObject.cpp
         GameHeaders/GameObject.h
-        GameHeaders/Handler.cpp
+        GameHeaders/SourceFiles/Handler.cpp
         GameHeaders/Handler.h
-        GameHeaders/GameID.h)
+        GameHeaders/GameID.h
+        GameHeaders/SourceFiles/Background.cpp
+        GameHeaders/Background.h)
 
 message("Binary Directory: ${CMAKE_BINARY_DIR}")
 

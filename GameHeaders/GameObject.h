@@ -14,8 +14,9 @@ public:
     GameObject(const char* textureFile, int x, int y);
     ~GameObject();
 
-    void Update();
-    void Render();
+    virtual void Update();
+
+    virtual void Render();
 
 
 private:

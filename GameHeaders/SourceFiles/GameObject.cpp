@@ -2,8 +2,8 @@
 // Created by dominichann on 4/28/24.
 //
 
-#include "GameObject.h"
-#include "TextureManager.h"
+#include "../GameObject.h"
+#include "../TextureManager.h"
 
 GameObject::GameObject(const char *textureFile, int x, int y) {
     texture = TextureManager::LoadTexture(textureFile);
@@ -15,9 +15,6 @@ GameObject::GameObject(const char *textureFile, int x, int y) {
 GameObject::~GameObject() = default;
 
 void GameObject::Update() {
-    xPos++;
-    yPos++;
-
     srcRect.h = 32;
     srcRect.w = 32;
     srcRect.x = 0;

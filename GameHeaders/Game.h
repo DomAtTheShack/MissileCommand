@@ -25,6 +25,8 @@ public:
 
     bool running() const;
     static SDL_Renderer *renderer;
+    static SDL_Window *window;
+
     static int nextID;
 
     void addObject(GameObject &object);
@@ -32,7 +34,6 @@ public:
     void removeObject(GameObject &object);
 private:
     bool isRunning;
-    SDL_Window *window;
     Handler *handler;
 
 };

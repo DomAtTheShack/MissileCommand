@@ -5,9 +5,9 @@
 #include <iostream>
 #include <utility>
 #include "SDL_image.h"
-#include "Game.h"
-#include "TextureManager.h"
-#include "GameObject.h"
+#include "../Game.h"
+#include "../TextureManager.h"
+#include "../GameObject.h"
 
 int Game::nextID = 0;
 
@@ -18,6 +18,7 @@ Game::Game(Handler *hand) {
 Game::~Game() = default;
 
 SDL_Renderer* Game::renderer = nullptr;
+SDL_Window *Game::window = nullptr;
 
 void Game::init(const char *title, int xPos, int yPos, int width, int height, bool fullscreen) {
     isRunning = false;
