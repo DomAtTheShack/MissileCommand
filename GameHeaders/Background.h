@@ -1,7 +1,7 @@
 #ifndef MISSILE_COMMAND_BACKGROUND_H
 #define MISSILE_COMMAND_BACKGROUND_H
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 class Background {
 public:
