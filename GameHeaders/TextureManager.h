@@ -3,6 +3,8 @@
 //
 
 #include "Game.h"
+#include <SDL_image.h>
+
 
 #ifndef PROJECT_NAME_TEXTUREMANAGER_H
 #define PROJECT_NAME_TEXTUREMANAGER_H

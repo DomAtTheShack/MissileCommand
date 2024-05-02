@@ -3,12 +3,8 @@
 //
 
 #include <iostream>
-#include <utility>
-#include "SDL_image.h"
 #include "../Game.h"
 #include "../TextureManager.h"
-#include "../GameObject.h"
-#include "../Background.h"
 
 int Game::nextID = 0;
 

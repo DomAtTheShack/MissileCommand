@@ -3,7 +3,6 @@
 //
 
 #include "../Handler.h"
-#include "../GameID.h"
 #include <algorithm> //Needed for std::remove
 
 bool Handler::isUp() const {
