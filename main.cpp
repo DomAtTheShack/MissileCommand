@@ -23,8 +23,7 @@ int main(int argc, char* args []) {
     Uint32 secondStart = SDL_GetTicks();
     int frames = 0;
 
-    auto *player = new GameObject("../assets/player.png", 100, 100);
-    auto *back = new Background("../assets/back.bmp");
+    auto *player = new GameObject("assets/player.png", 100, 100);
     handler->addObject(player);
 
 

@@ -45,7 +45,7 @@ void Game::init(const char *title, int xPos, int yPos, int width, int height, bo
         isRunning = true;
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // Set the background color to white
         SDL_Log("SubSystem Initialed");
-        background = new Background("../assets/back.bmp");
+        background = new Background("assets/back.bmp");
     }
 }
 

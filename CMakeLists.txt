@@ -63,5 +63,16 @@ elseif(UNIX)
     target_link_libraries(MissileCommand PRIVATE SDL2 SDL2_image)
 endif()
 
+# Define the source directory (your assets folder)
+set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets")
+
+# Define the destination directory in the build directory
+set(DEST_DIR "${CMAKE_BINARY_DIR}")
+
+# Copy the contents of the source directory to the destination directory
+file(COPY ${SOURCE_DIR} DESTINATION ${DEST_DIR})
+
+
+
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
