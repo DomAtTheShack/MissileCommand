@@ -10,8 +10,8 @@ Game *game = nullptr;
 Handler *handler = nullptr;
 
 int main(int argc, char* args []) {
-    handler = new Handler();
 
+    handler = new Handler();
     game = new Game(handler);
 
     game->init("Missile Command", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 700, false);

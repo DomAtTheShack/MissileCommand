@@ -24,6 +24,8 @@ public:
     void render();
     void clean();
 
+    void endGame();
+
     bool running() const;
     static SDL_Renderer *renderer;
     static SDL_Window *window;

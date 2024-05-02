@@ -42,7 +42,7 @@ elseif(APPLE)
 elseif(UNIX)
     # set linux-specific variables
     set(SDL2_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/SDL2/SDL2-2.30.2/include")
-    set(SDL2_LIBRARY "${PROJECT_SOURCE_DIR}/SDL2/x86_64-w64-mingw32/lib/x64")  # <- verify this path
+    set(SDL2_LIBRARY "${PROJECT_SOURCE_DIR}/SDL2/x86_64-w64-mingw32/lib")  # <- verify this path
     set(SDL2_IMAGE_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/SDL2_image/x86_64-w64-mingw32/include")
     set(SDL2_IMAGE_LIBRARIES "${PROJECT_SOURCE_DIR}/SDL2_image/x86_64-w64-mingw32/lib")
     find_package(PNG REQUIRED)

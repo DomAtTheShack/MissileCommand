@@ -9,7 +9,6 @@
 #ifndef MISSILECOMMAND_HANDLER_H
 #define MISSILECOMMAND_HANDLER_H
 
-
 class Handler
         {
 public:
@@ -17,8 +16,10 @@ public:
     void Render();
 
     void addObject(GameObject *object);
-
     void removeObject(GameObject *object);
+
+    void updateKeys(SDL_Event* keypress);
+
     bool isUp() const;
     void setUp(bool up);
     bool isDown() const;
@@ -35,7 +36,6 @@ private:
     bool right;
     bool left;
     static std::vector<int> IDsInPlay;
-
 };
 
 
