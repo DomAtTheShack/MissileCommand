@@ -22,18 +22,19 @@ add_definitions(-DSDL_MAIN_HANDLED)
 message("Binary Directory: ${CMAKE_BINARY_DIR}")
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${SDL2_INCLUDE_DIRS})
-find_package(SDL2 REQUIRED)
 
 if(WIN32)
-    # set windows-specific variables
+    # set variables
     set(SDL2_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/SDL2/SDL2-2.30.2/include")
-    set(SDL2_LIBRARY "${PROJECT_SOURCE_DIR}/SDL2/SDL2-2.30.2/lib/x64")  # <- verify this path
+    set(SDL2_LIBRARY "${PROJECT_SOURCE_DIR}/SDL2/SDL2-2.30.2/lib/x64/SDL2.lib")  # change this accordingly
     set(SDL2_IMAGE_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/SDL2_image/Windows/SDL2_image-2.8.2/include")
     set(SDL2_IMAGE_LIBRARIES "${PROJECT_SOURCE_DIR}/SDL2_image/Windows/SDL2_image-2.8.2/lib/x64/SDL2_image.lib")
+
+    # include directories
     include_directories("${SDL2_INCLUDE_DIR}")
     include_directories("${SDL2_IMAGE_INCLUDE_DIRS}")
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARIES} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES})
 
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/SDL2/SDL2-x64-Windows/SDL2.dll
             ${CMAKE_CURRENT_BINARY_DIR}/SDL2.dll
