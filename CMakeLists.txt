@@ -50,13 +50,17 @@ elseif(APPLE)
     find_package(PNG REQUIRED)
     target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARIES} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} PNG::PNG)
 elseif(UNIX)
-    # set linux-specific variables
-    set(SDL2_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/SDL2/SDL2-2.30.2/include")
-    set(SDL2_LIBRARY "${PROJECT_SOURCE_DIR}/SDL2/x86_64-w64-mingw32/lib")  # <- verify this path
-    set(SDL2_IMAGE_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/SDL2_image/x86_64-w64-mingw32/include")
-    set(SDL2_IMAGE_LIBRARIES "${PROJECT_SOURCE_DIR}/SDL2_image/x86_64-w64-mingw32/lib/libSDL2_image.a")
-    find_package(PNG REQUIRED)
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARIES} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} PNG::PNG)
+    # set variables
+    set(SDL2_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/SDL2/x86_64-w64-mingw32/include/SDL2")
+    set(SDL2_LIBRARY "${PROJECT_SOURCE_DIR}/SDL2/x86_64-w64-mingw32/lib/libSDL2.dll.a")  # change this accordingly
+    set(SDL2_IMAGE_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/SDL2_image/x86_64-w64-mingw32/include/SDL2")
+    set(SDL2_IMAGE_LIBRARIES "${PROJECT_SOURCE_DIR}/SDL2_image/x86_64-w64-mingw32/bin/SDL2_image.dll")
+
+    # include directories
+    include_directories("${SDL2_INCLUDE_DIR}")
+    include_directories("${SDL2_IMAGE_INCLUDE_DIRS}")
+
+    target_link_libraries(MissileCommand PRIVATE SDL2 SDL2_image)
 endif()
 
 
