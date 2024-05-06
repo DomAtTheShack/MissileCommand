@@ -16,7 +16,11 @@ add_executable(${PROJECT_NAME} main.cpp
         GameHeaders/Handler.h
         GameHeaders/GameID.h
         GameHeaders/SourceFiles/Background.cpp
-        GameHeaders/Background.h)
+        GameHeaders/Background.h
+        GameHeaders/SourceFiles/PlayerBase.cpp
+        GameHeaders/PlayerBase.h
+        GameHeaders/SourceFiles/Cursor.cpp
+        GameHeaders/Cursor.h)
 
 add_definitions(-DSDL_MAIN_HANDLED)
 message("Binary Directory: ${CMAKE_BINARY_DIR}")

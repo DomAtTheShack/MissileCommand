@@ -11,6 +11,8 @@ int Game::nextID = 0;
 Game::Game(Handler *hand) {
     handler = hand;
     background = nullptr;
+    playerBase = nullptr;
+    cursorG = nullptr;
 }
 
 Game::~Game() = default;
@@ -45,7 +47,12 @@ void Game::init(const char *title, int xPos, int yPos, int width, int height, bo
         isRunning = true;
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // Set the background color to white
         SDL_Log("SubSystem Initialed");
+        cursorG = new Cursor("assets/cursor.png" , 100,100);
         background = new Background("assets/back.bmp");
+        playerBase = new PlayerBase("assets/base.png", 300,300, cursorG);
+        handler->addObject(playerBase);
+        handler->addObject(cursorG);
+
     }
 }
 
@@ -59,6 +66,7 @@ void Game::handleEvents()
             isRunning = false;
             break;
         default:
+            handler->handleEvents(&event);
             break;
 
     }

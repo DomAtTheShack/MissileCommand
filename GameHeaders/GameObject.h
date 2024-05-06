@@ -15,17 +15,18 @@ public:
     ~GameObject();
 
     virtual void Update();
-
+    virtual void HandleInput(SDL_Event* event);
     virtual void Render();
 
 
-private:
+protected:
     int xPos;
     int yPos;
+private:
     SDL_Texture *texture;
+protected:
     SDL_Rect srcRect;
     SDL_Rect destRect;
-    std::vector<GameObject> GameObjects;
 };
 
 

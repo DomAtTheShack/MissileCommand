@@ -5,36 +5,41 @@
 #include "../Handler.h"
 #include <algorithm> //Needed for std::remove
 
-bool Handler::isUp() const {
+bool Handler::up = false;
+bool Handler::down = false;
+bool Handler::right = false;
+bool Handler::left = false;
+
+bool Handler::isUp() {
     return up;
 }
 
-void Handler::setUp(const bool up) {
-    this->up = up;
+void Handler::setUp(const bool upI) {
+    up = upI;
 }
 
-bool Handler::isDown() const {
+bool Handler::isDown() {
     return down;
 }
 
-void Handler::setDown(const bool down) {
-    this->down = down;
+void Handler::setDown(const bool downI) {
+    down = downI;
 }
 
-bool Handler::isRight() const {
+bool Handler::isRight() {
     return right;
 }
 
-void Handler::setRight(const bool right) {
-    this->right = right;
+void Handler::setRight(const bool rightI) {
+    right = rightI;
 }
 
-bool Handler::isLeft() const {
+bool Handler::isLeft() {
     return left;
 }
 
-void Handler::setLeft(const bool left) {
-    this->left = left;
+void Handler::setLeft(const bool leftI) {
+    left = leftI;
 }
 
 void Handler::Update() {
@@ -59,5 +64,12 @@ void Handler::removeObject(GameObject *object) {
 
 void Handler::addObject(GameObject *object) {
     GameObjects.push_back(object);
+}
+
+void Handler::handleEvents(SDL_Event *pEvent)
+{
+    for (GameObject *x: GameObjects) {
+        x->HandleInput(pEvent);
+    }
 }
 

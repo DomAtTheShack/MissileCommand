@@ -30,4 +30,6 @@ void GameObject::Render() {
     SDL_RenderCopy(Game::renderer, texture, &srcRect, &destRect);
 }
 
+void GameObject::HandleInput(SDL_Event *event) {}
+
 

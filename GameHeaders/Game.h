@@ -6,6 +6,7 @@
 #include <vector>
 #include "Handler.h"
 #include "Background.h"
+#include "PlayerBase.h"
 
 #ifndef PROJECT_NAME_GAME_H
 #define PROJECT_NAME_GAME_H
@@ -39,6 +40,8 @@ private:
     bool isRunning;
     Handler *handler;
     Background* background;
+    PlayerBase* playerBase;
+    Cursor* cursorG;
 };
 
 

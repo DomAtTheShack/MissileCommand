@@ -20,21 +20,24 @@ public:
 
     void updateKeys(SDL_Event* keypress);
 
-    bool isUp() const;
-    void setUp(bool up);
-    bool isDown() const;
-    void setDown(bool down);
-    bool isRight() const;
-    void setRight(bool right);
-    bool isLeft() const;
-    void setLeft(bool left);
+    static bool isUp();
+    static void setUp(bool up);
+    static bool isDown();
+    static void setDown(bool down);
+    static bool isRight();
+    static void setRight(bool right);
+    static bool isLeft();
+    static void setLeft(bool left);
 
     std::vector<GameObject *> GameObjects;
+
+    void handleEvents(SDL_Event *pEvent);
+
 private:
-    bool up;
-    bool down;
-    bool right;
-    bool left;
+    static bool up;
+    static bool down;
+    static bool right;
+    static bool left;
     static std::vector<int> IDsInPlay;
 };
 
