@@ -7,7 +7,11 @@
 
 
 #include "GameObject.h"
+#include "PlayerBase.h"
 #include "Cursor.h"
+
+class Cursor; // Forward declaration
+
 
 class PlayerBase : public GameObject
 {
@@ -18,11 +22,14 @@ public:
     void Render() override;
     void Update() override;
 
-    void fire();
+    void fire(int x, int y);
     bool isHit();
 
 private:
     Cursor* cursorInPlay;
+    bool fired;
+
+    void HandleInput(SDL_Event *event);
 };
 
 

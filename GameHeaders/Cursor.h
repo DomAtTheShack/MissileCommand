@@ -7,6 +7,7 @@
 
 
 #include "GameObject.h"
+#include "PlayerBase.h"
 
 class Cursor : public GameObject
 {
@@ -24,7 +25,7 @@ public:
 private:
     int velX;
     int velY;
-
+    bool fired;
 
 };
 

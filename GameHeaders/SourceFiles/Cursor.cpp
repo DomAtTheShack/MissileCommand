@@ -10,6 +10,7 @@ Cursor::Cursor(const char *textureFile, int x, int y) : GameObject(textureFile, 
     yPos = y;
     velY = 0;
     velX = 0;
+    fired = false;
 }
 
 Cursor::~Cursor() = default;
@@ -22,14 +23,6 @@ void Cursor::Update() {
 
 void Cursor::Render() {
     GameObject::Render();
-}
-
-int Cursor::getX() const {
-    return xPos;
-}
-
-int Cursor::getY() const {
-    return yPos;
 }
 
 void Cursor::HandleInput(SDL_Event *event)
@@ -66,8 +59,19 @@ void Cursor::HandleInput(SDL_Event *event)
             case SDLK_RIGHT:
                 velX = 0;
                 break;
+            case SDLK_SPACE:
+                fired = false;
+                break;
             default:
                 break;
         }
     }
+}
+
+int Cursor::getX() const {
+    return xPos;
+}
+
+int Cursor::getY() const {
+    return yPos;
 }

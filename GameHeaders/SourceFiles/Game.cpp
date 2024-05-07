@@ -52,7 +52,6 @@ void Game::init(const char *title, int xPos, int yPos, int width, int height, bo
         playerBase = new PlayerBase("assets/base.png", 300,300, cursorG);
         handler->addObject(playerBase);
         handler->addObject(cursorG);
-
     }
 }
 

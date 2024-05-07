@@ -6,10 +6,13 @@
 #include "../Cursor.h"
 #include <iostream>
 
+class PlayerBase; // Forward declaration
+
 PlayerBase::PlayerBase(const char *textureFile, int x, int y, Cursor* cursor) :
             GameObject(textureFile, x, y)
 {
     this->cursorInPlay = cursor;
+    fired = false;
 }
 
 PlayerBase::~PlayerBase() = default;
@@ -32,12 +35,40 @@ void PlayerBase::Update()
     cursorInPlay->Update();
 }
 
-void PlayerBase::fire()
+void PlayerBase::fire(int x, int y)
 {
-
+    std::cout << "FIRE" << x << " " << y << std::endl;
 }
 
 bool PlayerBase::isHit()
 {
     return false;
+}
+void PlayerBase::HandleInput(SDL_Event *event)
+{
+    if (event->type == SDL_KEYDOWN)
+    {
+        switch (event->key.keysym.sym)
+        {
+            case SDLK_SPACE:
+                if(!fired)
+                {
+                    fired = true;
+                    fire(cursorInPlay->getX(), cursorInPlay->getY());
+                }
+            default:
+                break;
+        }
+    }
+    if (event->type == SDL_KEYUP)
+    {
+        switch (event->key.keysym.sym)
+        {
+            case SDLK_SPACE:
+                fired = false;
+                break;
+            default:
+                break;
+        }
+    }
 }
