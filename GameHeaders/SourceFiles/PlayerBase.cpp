@@ -4,6 +4,7 @@
 
 #include "../PlayerBase.h"
 #include "../Cursor.h"
+#include "../Game.h"
 #include <iostream>
 
 class PlayerBase; // Forward declaration
@@ -21,6 +22,18 @@ void PlayerBase::Render()
 {
     GameObject::Render();
     cursorInPlay->Render();
+    if(fired) {
+        int x1 = cursorInPlay->getX() + 16; // X coordinate of the start point
+        int y1 = cursorInPlay->getY() + 16; // Y coordinate of the start point
+        int x2 = xPos + 32; // X coordinate of the end point
+        int y2 = yPos + 32; // Y coordinate of the end point
+        SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, SDL_ALPHA_OPAQUE); // Set color to black
+        for (int offset = -2; offset <= 2; ++offset) {
+            SDL_RenderDrawLine(Game::renderer, x1, y1 + offset, x2, y2 + offset); // Only offset Y values
+        }
+
+        SDL_RenderPresent(Game::renderer);
+    }
 }
 
 void PlayerBase::Update()
@@ -37,7 +50,10 @@ void PlayerBase::Update()
 
 void PlayerBase::fire(int x, int y)
 {
-    std::cout << "FIRE" << x << " " << y << std::endl;
+    // Assume you already have SDL initialized and an SDL_Renderer* named renderer
+
+
+
 }
 
 bool PlayerBase::isHit()
