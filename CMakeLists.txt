@@ -19,8 +19,12 @@ add_executable(${PROJECT_NAME} main.cpp
         GameHeaders/Cursor.h
         GameHeaders/SourceFiles/PlayerBase.cpp
         GameHeaders/PlayerBase.h
-        GameHeaders/MoviableObject.cpp
-        GameHeaders/MoviableObject.h)
+        GameHeaders/SourceFiles/MoviableObject.cpp
+        GameHeaders/MoviableObject.h
+        GameHeaders/SourceFiles/MissileTrail.cpp
+        GameHeaders/MissileTrail.h
+        GameHeaders/SourceFiles/Missile.cpp
+        GameHeaders/Missile.h)
 
 add_definitions(-DSDL_MAIN_HANDLED)
 message("Binary Directory: ${CMAKE_BINARY_DIR}")

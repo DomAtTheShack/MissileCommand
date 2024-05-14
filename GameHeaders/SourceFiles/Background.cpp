@@ -1,4 +1,3 @@
-#include <iostream>
 #include "../Background.h"
 #include "../Game.h"
 #include "../TextureManager.h"

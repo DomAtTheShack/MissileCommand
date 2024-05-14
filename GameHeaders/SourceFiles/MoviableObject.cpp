@@ -2,12 +2,12 @@
 // Created by dominichann on 5/7/24.
 //
 
-#include "MoviableObject.h"
+#include "../MoviableObject.h"
 
-MoviableObject::MoviableObject(const char *textureFile, int x, int y) : GameObject(textureFile, x, y)
+MoviableObject::MoviableObject(const char *textureFile, int x, int y, int vX, int vY) : GameObject(textureFile, x, y)
 {
-    velX = 0;
-    velY = 0;
+    velX = vX;
+    velY = vY;
 }
 
 void MoviableObject::Update() {

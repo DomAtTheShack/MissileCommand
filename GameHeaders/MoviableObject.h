@@ -11,17 +11,17 @@
 class MoviableObject : public GameObject
 {
 public:
-    MoviableObject(const char *textureFile, int x, int y);
+    MoviableObject(const char *textureFile, int x, int y, int vX, int vY);
+
     ~MoviableObject();
 
     void Update() override;
     void Render() override;
 
-private:
+
+protected:
     int velX;
     int velY;
-    
-
 };
 
 

@@ -15,7 +15,7 @@
 class Game {
 
 public:
-    Game(Handler *handler);
+    Game();
     ~Game();
 
     void init(const char* title, int xPos, int yPos, int width, int height, bool fullscreen);
@@ -33,12 +33,10 @@ public:
 
     static int nextID;
 
-    void addObject(GameObject &object);
+    static Handler *handler;
 
-    void removeObject(GameObject &object);
 private:
     bool isRunning;
-    Handler *handler;
     Background* background;
     PlayerBase* playerBase;
     Cursor* cursorG;

@@ -4,15 +4,12 @@
 #include "GameHeaders/TextureManager.h"
 #include "GameHeaders/GameObject.h"
 #include "GameHeaders/Handler.h"
-#include "GameHeaders/Background.h"
 
 Game *game = nullptr;
-Handler *handler = nullptr;
 
 int main(int argc, char* args []) {
-
-    handler = new Handler();
-    game = new Game(handler);
+    game = new Game();
+    Game::handler = new Handler();
 
     game->init("Missile Command", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 700, false);
 
@@ -24,7 +21,7 @@ int main(int argc, char* args []) {
     int frames = 0;
 
     auto *player = new GameObject("assets/player.png", 100, 100);
-    handler->addObject(player);
+    Game::handler->addObject(player);
 
 
     while (game->running()) {

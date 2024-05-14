@@ -5,11 +5,16 @@
 #include <iostream>
 #include "../Game.h"
 #include "../TextureManager.h"
+#include "../Handler.h"
+#include "../MissileTrail.h"
+#include "../Missile.h"
 
 int Game::nextID = 0;
 
-Game::Game(Handler *hand) {
-    handler = hand;
+Handler* Game::handler = nullptr;
+
+
+Game::Game() {
     background = nullptr;
     playerBase = nullptr;
     cursorG = nullptr;
@@ -50,8 +55,8 @@ void Game::init(const char *title, int xPos, int yPos, int width, int height, bo
         cursorG = new Cursor("assets/cursor.png" , 100,100);
         background = new Background("assets/back.bmp");
         playerBase = new PlayerBase("assets/base.png", 300,300, cursorG);
-        handler->addObject(playerBase);
-        handler->addObject(cursorG);
+        Game::handler->addObject(playerBase);
+        Game::handler->addObject(cursorG);
     }
 }
 
@@ -65,7 +70,7 @@ void Game::handleEvents()
             isRunning = false;
             break;
         default:
-            handler->handleEvents(&event);
+            Game::handler->handleEvents(&event);
             break;
 
     }
@@ -74,13 +79,13 @@ void Game::handleEvents()
 
 void Game::update() {
     background->Update();  // update background
-    handler->Update();
+    Game::handler->Update();
 }
 
 void Game::render() {
     SDL_RenderClear(renderer);
     background->Render();  // render background
-    handler->Render();
+    Game::handler->Render();
     SDL_RenderPresent(renderer);
 }
 
@@ -93,12 +98,4 @@ void Game::clean() {
 
 bool Game::running() const {
     return isRunning;
-}
-
-void Game::addObject(GameObject &object) {
-    handler->addObject(&object);
-}
-
-void Game::removeObject(GameObject &object) {
-    handler->removeObject(&object);
 }
