@@ -57,6 +57,9 @@ void Game::init(const char *title, int xPos, int yPos, int width, int height, bo
         playerBase = new PlayerBase("assets/base.png", 300,300, cursorG);
         Game::handler->addObject(playerBase);
         Game::handler->addObject(cursorG);
+        Game::handler->addObject(new Missile(nullptr,40,40,2,2));
+        Game::handler->addObject(new Missile(nullptr,40,40,-2,2));
+
     }
 }
 

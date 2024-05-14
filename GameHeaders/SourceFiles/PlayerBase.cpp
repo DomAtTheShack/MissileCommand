@@ -6,6 +6,7 @@
 #include "../Cursor.h"
 #include "../Game.h"
 #include "../MissileTrail.h"
+#include "../Missile.h"
 #include <iostream>
 
 class PlayerBase; // Forward declaration
@@ -38,9 +39,11 @@ void PlayerBase::Update()
 
 void PlayerBase::fire(int x, int y)
 {
-    Game::handler->addObject(new MissileTrail(nullptr, cursorInPlay->getX(),cursorInPlay->getY(), -2, 1));
-
+    if (Game::handler != nullptr && cursorInPlay != nullptr) {
+        Game::handler->addObject(new Missile(nullptr, cursorInPlay->getX(), cursorInPlay->getY(), -2, 1));
+    }
 }
+
 
 bool PlayerBase::isHit()
 {

@@ -19,7 +19,7 @@ void Missile::Update() {
 
 void Missile::Render()
 {
-    SDL_Rect square = {xPos,yPos,5,4};
+    SDL_Rect square = {xPos,yPos,10,8};
     SDL_RenderFillRect(Game::renderer, &square);
 }
 

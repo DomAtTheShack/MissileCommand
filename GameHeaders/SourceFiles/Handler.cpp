@@ -4,6 +4,9 @@
 
 #include "../Handler.h"
 #include <algorithm> //Needed for std::remove
+#include <typeinfo>
+#include <iostream>
+#include "../PlayerBase.h"
 
 bool Handler::up = false;
 bool Handler::down = false;
@@ -66,10 +69,21 @@ void Handler::addObject(GameObject *object) {
     GameObjects.push_back(object);
 }
 
+
 void Handler::handleEvents(SDL_Event *pEvent)
 {
     for (GameObject *x: GameObjects) {
-        x->HandleInput(pEvent);
+        if (x != nullptr) {
+            // Check if the object is of type PlayerBase
+            try {
+                // Call HandleInput method
+                x->HandleInput(pEvent);
+            } catch (const std::bad_typeid& e) {
+                std::cerr << "Error: typeid could not determine the type of the object." << std::endl;
+            }
+        } else {
+            std::cerr << "Error: Encountered null pointer in GameObjects vector." << std::endl;
+        }
     }
 }
 
