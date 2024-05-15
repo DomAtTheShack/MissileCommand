@@ -67,9 +67,24 @@ endif()
 set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets")
 
 # Define the destination directory in the build directory
-set(DEST_DIR "${CMAKE_BINARY_DIR}")
+set(DEST_DIR "${CMAKE_BINARY_DIR}/assets")
 
-# Copy the contents of the source directory to the destination directory
-file(COPY ${SOURCE_DIR} DESTINATION ${DEST_DIR})
+# Add a custom command to delete the destination directory if it exists
+add_custom_command(
+        OUTPUT ${DEST_DIR}
+        COMMAND ${CMAKE_COMMAND} -E remove_directory ${DEST_DIR}
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${DEST_DIR}
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${SOURCE_DIR} ${DEST_DIR}
+        DEPENDS ${SOURCE_DIR}
+        COMMENT "Copying assets to build directory and ensuring overwrite."
+)
+
+# Add a custom target to run the custom command
+add_custom_target(copy_assets ALL
+        DEPENDS ${DEST_DIR}
+)
+
+# Ensure the copy_assets target runs before the main build target
+add_dependencies(${PROJECT_NAME} copy_assets)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
