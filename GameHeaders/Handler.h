@@ -18,8 +18,6 @@ public:
     void addObject(GameObject *object);
     void removeObject(GameObject *object);
 
-    void updateKeys(SDL_Event* keypress);
-
     static bool isUp();
     static void setUp(bool up);
     static bool isDown();
@@ -33,12 +31,15 @@ public:
 
     void handleEvents(SDL_Event *pEvent);
 
+    void toDestroy();
+
 private:
     static bool up;
     static bool down;
     static bool right;
     static bool left;
     static std::vector<int> IDsInPlay;
+    std::vector<GameObject*> objectsToDestroy;
 };
 
 

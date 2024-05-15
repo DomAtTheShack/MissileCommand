@@ -57,26 +57,28 @@ void Handler::Render() {
     }
 }
 
-void Handler::removeObject(GameObject *object) {
-    auto it = std::find(GameObjects.begin(), GameObjects.end(), object);
-    if (it != GameObjects.end()) {
-        delete *it;  // Deallocate memory
-        GameObjects.erase(it); // Remove from vector
-    }
+void Handler::removeObject(GameObject* object) {
+        objectsToDestroy.push_back(object);
 }
+
 
 void Handler::addObject(GameObject *object) {
     GameObjects.push_back(object);
 }
 
 
-void Handler::handleEvents(SDL_Event *pEvent)
+void Handler::handleEvents(SDL_Event* pEvent)
 {
-    for (GameObject *x: GameObjects) {
+    // Make a copy of the GameObjects vector
+    std::vector<GameObject*> gameObjectsCopy = GameObjects;
+
+    // Iterate over the copy
+    for (GameObject* x : gameObjectsCopy) {
         if (x != nullptr) {
             // Check if the object is of type PlayerBase
             try {
-                // Call HandleInput method
+                // Call Render and HandleInput methods
+                x->Render();
                 x->HandleInput(pEvent);
             } catch (const std::bad_typeid& e) {
                 std::cerr << "Error: typeid could not determine the type of the object." << std::endl;
@@ -86,4 +88,25 @@ void Handler::handleEvents(SDL_Event *pEvent)
         }
     }
 }
+
+void Handler::toDestroy() {
+    for (int i = 0; i < objectsToDestroy.size(); i++) {
+        GameObject* objToDestroy = objectsToDestroy[i];
+
+        // Find the corresponding object in GameObjects vector
+        auto it = std::find(GameObjects.begin(), GameObjects.end(), objToDestroy);
+        if (it != GameObjects.end()) {
+            // Erase the object from GameObjects vector
+            GameObjects.erase(it);
+            // Deallocate memory
+            delete objToDestroy;
+        } else {
+            // Object not found in GameObjects vector
+            std::cerr << "Object to destroy not found in GameObjects vector." << std::endl;
+        }
+    }
+    objectsToDestroy.clear();
+}
+
+
 

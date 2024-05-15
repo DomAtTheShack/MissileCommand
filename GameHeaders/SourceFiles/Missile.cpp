@@ -21,6 +21,11 @@ void Missile::Render()
 {
     SDL_Rect square = {xPos,yPos,10,8};
     SDL_RenderFillRect(Game::renderer, &square);
+    if(yPos > 600)
+    {
+        Game::handler->removeObject(Trail);
+        Game::handler->removeObject(this);
+    }
 }
 
 void Missile::createTrail() {

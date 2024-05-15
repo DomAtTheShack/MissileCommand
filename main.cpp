@@ -4,6 +4,8 @@
 #include "GameHeaders/TextureManager.h"
 #include "GameHeaders/GameObject.h"
 #include "GameHeaders/Handler.h"
+#include "GameHeaders/Missile.h"
+#include <random>
 
 Game *game = nullptr;
 
@@ -27,9 +29,12 @@ int main(int argc, char* args []) {
     while (game->running()) {
         frameStart = SDL_GetTicks();
 
+
+
         game->handleEvents();
         game->update();
         game->render();
+        Game::handler->toDestroy();
 
 
         frames++;
@@ -38,6 +43,24 @@ int main(int argc, char* args []) {
             std::cout << "FPS: " << frames << std::endl;
             frames = 0;
             secondStart = SDL_GetTicks();
+            for(int i = 0;i < 20;i++)
+            {
+                std::random_device rd;
+                std::mt19937 gen(rd());
+
+                // Define the range of the random number
+                std::uniform_int_distribution<int> dis(0, 1000);
+                int rX = dis(gen);
+
+                dis = std::uniform_int_distribution<int>(-5, 5);
+
+                int rvX = dis(gen);
+                dis = std::uniform_int_distribution<int>(1, 5);
+
+                int rvY = dis(gen);
+
+                Game::handler->addObject(new Missile(nullptr,rX, 0, rvX, rvY));
+            }
         }
 
         frameTime = SDL_GetTicks() - frameStart;

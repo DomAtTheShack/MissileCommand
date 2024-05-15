@@ -40,7 +40,7 @@ void PlayerBase::Update()
 void PlayerBase::fire(int x, int y)
 {
     if (Game::handler != nullptr && cursorInPlay != nullptr) {
-        Game::handler->addObject(new Missile(nullptr, cursorInPlay->getX(), cursorInPlay->getY(), -2, 1));
+        Game::handler->addObject(new Missile(nullptr, x, y, 2, 1));
     }
 }
 
@@ -49,7 +49,7 @@ bool PlayerBase::isHit()
 {
     return false;
 }
-void PlayerBase::HandleInput(SDL_Event *event)
+void PlayerBase::HandleInput(SDL_Event* event)
 {
     if (event->type == SDL_KEYDOWN)
     {
