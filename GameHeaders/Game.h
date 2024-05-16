@@ -7,6 +7,7 @@
 #include "Handler.h"
 #include "Background.h"
 #include "PlayerBase.h"
+#include "City.h"
 
 #ifndef PROJECT_NAME_GAME_H
 #define PROJECT_NAME_GAME_H
@@ -40,6 +41,7 @@ private:
     Background* background;
     PlayerBase* playerBase;
     Cursor* cursorG;
+    std::vector<City*> cities;
 };
 
 

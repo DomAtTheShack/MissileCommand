@@ -19,6 +19,21 @@ void Cursor::Update() {
     GameObject::Update();
     xPos += velX;
     yPos += velY;
+
+    // Screen boundaries (assumed screen size: 1280x720)
+    const int screenWidth = 1200;
+    const int screenHeight = 600;
+
+    // Adjust if out of bounds
+    if (xPos < 0) xPos = 0;
+    if (xPos > screenWidth - srcRect.w * 2) xPos = screenWidth - srcRect.w * 2;
+    if (yPos < 0) yPos = 0;
+    if (yPos > screenHeight - srcRect.h * 2) yPos = screenHeight - srcRect.h * 2;
+
+    srcRect.h = 12;
+    srcRect.w = 12;
+    destRect.w = srcRect.w * 2;
+    destRect.h = srcRect.h * 2;
 }
 
 void Cursor::Render() {
