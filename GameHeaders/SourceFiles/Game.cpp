@@ -59,13 +59,13 @@ void Game::init(const char *title, int xPos, int yPos, int width, int height, bo
         Game::handler->addObject(cursorG);
         for(int i = 0;i<3;i++)
         {
-            City* temp = new City("assets/city.png", (i * 180) + 35, 580);
+            City* temp = new City("assets/city.png", (i * 180) + 30, 550);
             Game::handler->addObject(temp);
             cities.push_back(temp);
         }
         for(int i = 3;i<6;i++)
         {
-            City* temp = new City("assets/city.png", (i * 180) + 160, 580);
+            City* temp = new City("assets/city.png", (i * 180) + 190, 550);
             Game::handler->addObject(temp);
             cities.push_back(temp);
         }
