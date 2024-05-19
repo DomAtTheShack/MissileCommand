@@ -12,7 +12,7 @@
 class Missile : public MoviableObject
 {
 public:
-    Missile(const char *textureFile, int x, int y, int vX, int vY);
+    Missile(const char *textureFile, int x, int y, int vX, int vY, int kpX, int kpY);
 
     ~Missile();
 
@@ -23,6 +23,10 @@ public:
 private:
     MissileTrail* Trail;
     void TargetBase();
+    int killPointX;
+    int killPointY;
+
+    bool willPassKillPoint(int nextX, int nextY);
 };
 
 

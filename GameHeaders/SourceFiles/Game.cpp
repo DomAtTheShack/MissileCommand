@@ -6,8 +6,7 @@
 #include "../Game.h"
 #include "../TextureManager.h"
 #include "../Handler.h"
-#include "../MissileTrail.h"
-#include "../Missile.h"
+#include "../PlayerBase.h"
 
 int Game::nextID = 0;
 
@@ -54,7 +53,7 @@ void Game::init(const char *title, int xPos, int yPos, int width, int height, bo
         SDL_Log("SubSystem Initialed");
         cursorG = new Cursor("assets/cursor.png" , 100,100);
         background = new Background("assets/back.bmp");
-        playerBase = new PlayerBase("assets/city.png", 300,300, cursorG);
+        playerBase = new PlayerBase(nullptr, PLAYERBASE_X,PLAYERBASE_Y, cursorG);
         Game::handler->addObject(playerBase);
         Game::handler->addObject(cursorG);
         for(int i = 0;i<3;i++)

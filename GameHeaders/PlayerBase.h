@@ -11,13 +11,15 @@
 #include "Cursor.h"
 
 class Cursor; // Forward declaration
-
+#define PLAYERBASE_X 585
+#define PLAYERBASE_Y 520
 
 class PlayerBase : public GameObject
 {
 public:
     PlayerBase(const char *textureFile, int x, int y, Cursor* cursor);
     ~PlayerBase();
+
 
     void Render() override;
     void Update() override;
