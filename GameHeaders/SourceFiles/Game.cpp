@@ -11,6 +11,7 @@
 int Game::nextID = 0;
 
 Handler* Game::handler = nullptr;
+AudioSystem* Game::audioSystem = nullptr;
 
 
 Game::Game() {
@@ -51,20 +52,22 @@ void Game::init(const char *title, int xPos, int yPos, int width, int height, bo
         isRunning = true;
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // Set the background color to white
         SDL_Log("SubSystem Initialed");
-        cursorG = new Cursor("assets/cursor.png" , 100,100);
-        background = new Background("assets/back.bmp");
+        cursorG = new Cursor("assets/images/cursor.png" , 100,100);
+        background = new Background("assets/images/back.bmp");
         playerBase = new PlayerBase(nullptr, PLAYERBASE_X,PLAYERBASE_Y, cursorG);
         Game::handler->addObject(playerBase);
         Game::handler->addObject(cursorG);
+        audioSystem = new AudioSystem();
+        audioSystem->LoadMP3("assets/sfx/back.mp3");
         for(int i = 0;i<3;i++)
         {
-            City* temp = new City("assets/city.png", (i * 180) + 30, 550);
+            City* temp = new City("assets/images/city.png", (i * 180) + 30, 550);
             Game::handler->addObject(temp);
             cities.push_back(temp);
         }
         for(int i = 3;i<6;i++)
         {
-            City* temp = new City("assets/city.png", (i * 180) + 190, 550);
+            City* temp = new City("assets/images/city.png", (i * 180) + 190, 550);
             Game::handler->addObject(temp);
             cities.push_back(temp);
         }

@@ -7,6 +7,10 @@ Missile::Missile(const char *textureFile, float x, float y, float vX, float vY, 
         {
     if(!baseMissile)
         createTrail();
+    else {
+        Game::audioSystem->LoadWAV("assets/sfx/shoot.wav", false);
+        Game::audioSystem->PlayCurrentWAV();
+    }
     baseMiss = baseMissile;
 }
 

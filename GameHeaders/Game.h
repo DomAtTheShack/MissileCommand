@@ -8,6 +8,7 @@
 #include "Background.h"
 #include "PlayerBase.h"
 #include "City.h"
+#include "AudioSystem.h"
 
 #ifndef PROJECT_NAME_GAME_H
 #define PROJECT_NAME_GAME_H
@@ -35,6 +36,7 @@ public:
     static int nextID;
 
     static Handler *handler;
+    static AudioSystem* audioSystem;
 
 private:
     bool isRunning;

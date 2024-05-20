@@ -47,16 +47,16 @@ void Cursor::HandleInput(SDL_Event *event)
         switch (event->key.keysym.sym)
         {
             case SDLK_UP:
-                velY = -5;
+                velY = -3;
                 break;
             case SDLK_DOWN:
-                velY = 5;
+                velY = 3;
                 break;
             case SDLK_LEFT:
-                velX = -5;
+                velX = -3;
                 break;
             case SDLK_RIGHT:
-                velX = 5;
+                velX = 3;
                 break;
             default:
                 break;

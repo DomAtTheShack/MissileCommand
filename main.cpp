@@ -4,6 +4,7 @@
 #include "GameHeaders/TextureManager.h"
 #include "GameHeaders/GameObject.h"
 #include "GameHeaders/Handler.h"
+#include "GameHeaders/AudioSystem.h"
 #include <random>
 
 Game *game = nullptr;
@@ -13,7 +14,6 @@ int main(int argc, char* args []) {
     Game::handler = new Handler();
 
     game->init("Missile Command", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 700, false);
-
 
     Uint32 frameStart, frameTime;
     const int FPS = 60;
@@ -34,6 +34,7 @@ int main(int argc, char* args []) {
         game->update();
         game->render();
         Game::handler->toDestroy();
+
 
 
         frames++;

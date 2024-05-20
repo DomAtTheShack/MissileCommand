@@ -49,6 +49,7 @@ void PlayerBase::fire(float x, float y) {
         float scaledVY = normVY * speed;
 
         Game::handler->addObject(new Missile(nullptr, xPos, yPos, scaledVX, scaledVY, x, y, true));
+        Game::audioSystem->PlayCurrentWAV();
     }
 }
 

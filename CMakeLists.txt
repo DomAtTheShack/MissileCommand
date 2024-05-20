@@ -27,6 +27,8 @@ add_executable(${PROJECT_NAME}
         GameHeaders/Missile.h
         GameHeaders/SourceFiles/City.cpp
         GameHeaders/City.h
+        GameHeaders/SourceFiles/AudioSystem.cpp
+        GameHeaders/AudioSystem.h
 )
 
 add_definitions(-DSDL_MAIN_HANDLED)
@@ -64,8 +66,9 @@ else()
     find_package(PkgConfig REQUIRED)
     pkg_search_module(SDL2 REQUIRED sdl2)
     pkg_search_module(SDL2_image REQUIRED SDL2_image)
-    include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS})
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARIES} ${SDL2_image_LIBRARIES})
+    pkg_search_module(SDL2_mixer REQUIRED SDL2_mixer)
+    include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_mixer_INCLUDE_DIRS})
+    target_link_libraries(MissileCommand PRIVATE ${SDL2_LIBRARIES} ${SDL2_image_LIBRARIES} ${SDL2_mixer_LIBRARIES})
 endif()
 
 
