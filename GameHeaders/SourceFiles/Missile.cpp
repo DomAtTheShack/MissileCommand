@@ -1,30 +1,32 @@
-//
-// Created by dominichann on 5/12/24.
-//
-
 #include "../Missile.h"
 #include "../Game.h"
-#include <cmath> // For abs function
+#include <cmath>
 
-Missile::Missile(const char *textureFile, int x, int y, int vX, int vY, int kpX, int kpY)
-        : MoviableObject(textureFile, x, y, vX, vY), killPointX(kpX), killPointY(kpY), Trail(nullptr) {
-    createTrail();
+Missile::Missile(const char *textureFile, float x, float y, float vX, float vY, float kpX, float kpY, bool baseMissile)
+        : MoviableObject(textureFile, x, y, vX, vY), killPointX(kpX), killPointY(kpY), Trail(nullptr)
+        {
+    if(!baseMissile)
+        createTrail();
+    baseMiss = baseMissile;
 }
 
 Missile::~Missile() = default;
 
 void Missile::Update() {
-    // Check if the missile has reached the kill point
-    if (std::abs(xPos) <= std::abs(killPointX) && std::abs(yPos) <= std::abs(killPointY)) {
-        Game::handler->removeObject(Trail);
+    // Check if the missile has reached or passed the kill point
+    if ((velX > 0 && xPos >= killPointX) || (velX < 0 && xPos <= killPointX) ||
+        (velY > 0 && yPos >= killPointY) || (velY < 0 && yPos <= killPointY)) {
+        if(!baseMiss)
+            Game::handler->removeObject(Trail);
         Game::handler->removeObject(this);
+        return; // Exit the update function to prevent further updates
     }
 
     MoviableObject::Update();
 }
 
 void Missile::Render() {
-    SDL_Rect square = {xPos, yPos, 10, 8};
+    SDL_Rect square = {static_cast<int>(xPos), static_cast<int>(yPos), 10, 8};
     SDL_RenderFillRect(Game::renderer, &square);
 }
 

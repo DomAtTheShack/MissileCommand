@@ -14,24 +14,22 @@ class Cursor; // Forward declaration
 #define PLAYERBASE_X 585
 #define PLAYERBASE_Y 520
 
-class PlayerBase : public GameObject
-{
+class PlayerBase : public GameObject {
 public:
-    PlayerBase(const char *textureFile, int x, int y, Cursor* cursor);
+    PlayerBase(const char *textureFile, float x, float y, Cursor* cursor);
     ~PlayerBase();
 
-
-    void Render() override;
     void Update() override;
-
-    void fire(int x, int y);
-    bool isHit();
+    void Render() override;
+    void HandleInput(SDL_Event *event) override;
+    void fire(float x, float y); // Updated to use float
 
 private:
     Cursor* cursorInPlay;
     bool fired;
+    static int gcd(int a, int b);
 
-    void HandleInput(SDL_Event *event);
+    bool isHit();
 };
 
 

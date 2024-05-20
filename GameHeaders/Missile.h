@@ -9,25 +9,21 @@
 #include "MoviableObject.h"
 #include "MissileTrail.h"
 
-class Missile : public MoviableObject
-{
+class Missile : public MoviableObject {
 public:
-    Missile(const char *textureFile, int x, int y, int vX, int vY, int kpX, int kpY);
-
+    Missile(const char *textureFile, float x, float y, float vX, float vY, float kpX, float kpY, bool baseMissile);
     ~Missile();
 
-       void Update() override;
-       void Render() override;
+    void Update() override;
+    void Render() override;
 
-       void createTrail();
 private:
+    float killPointX, killPointY;
     MissileTrail* Trail;
+    bool baseMiss;
+
+    void createTrail();
     void TargetBase();
-    int killPointX;
-    int killPointY;
-
-    bool willPassKillPoint(int nextX, int nextY);
 };
-
 
 #endif //MISSILECOMMAND_MISSILE_H
