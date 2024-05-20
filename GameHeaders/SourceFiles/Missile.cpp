@@ -12,6 +12,7 @@ Missile::Missile(const char *textureFile, float x, float y, float vX, float vY, 
         Game::audioSystem->PlayCurrentWAV();
     }
     baseMiss = baseMissile;
+    color = {0, 0, 0, 255};
 }
 
 Missile::~Missile() = default;
@@ -30,6 +31,7 @@ void Missile::Update() {
 }
 
 void Missile::Render() {
+    SDL_SetRenderDrawColor(Game::renderer, color.r, color.g, color.b,color.a);
     SDL_Rect square = {static_cast<int>(xPos), static_cast<int>(yPos), 10, 8};
     SDL_RenderFillRect(Game::renderer, &square);
 }

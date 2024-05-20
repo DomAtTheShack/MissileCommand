@@ -27,7 +27,8 @@ void GameObject::Update() {
 }
 
 void GameObject::Render() {
-    SDL_RenderCopy(Game::renderer, texture, &srcRect, &destRect);
+    if(texture != nullptr)
+        SDL_RenderCopy(Game::renderer, texture, &srcRect, &destRect);
 }
 
 void GameObject::HandleInput(SDL_Event *event) {}

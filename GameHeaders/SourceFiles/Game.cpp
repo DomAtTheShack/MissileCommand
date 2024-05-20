@@ -7,6 +7,7 @@
 #include "../TextureManager.h"
 #include "../Handler.h"
 #include "../PlayerBase.h"
+#include "../MissileExplo.h"
 
 int Game::nextID = 0;
 
@@ -59,6 +60,8 @@ void Game::init(const char *title, int xPos, int yPos, int width, int height, bo
         Game::handler->addObject(cursorG);
         audioSystem = new AudioSystem();
         audioSystem->LoadMP3("assets/sfx/back.mp3");
+        MissileExplo* explo = new MissileExplo(nullptr, 400,300);
+        Game::handler->addObject(explo);
         for(int i = 0;i<3;i++)
         {
             City* temp = new City("assets/images/city.png", (i * 180) + 30, 550);

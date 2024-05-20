@@ -42,7 +42,7 @@ void PlayerBase::fire(float x, float y) {
         float normVY = vY / length;
 
         // Define the desired speed
-        float speed = 12.0f;
+        float speed = 16.0f;
 
         // Scale the normalized vector to the desired speed
         float scaledVX = normVX * speed;

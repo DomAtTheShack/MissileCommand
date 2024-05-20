@@ -29,6 +29,8 @@ add_executable(${PROJECT_NAME}
         GameHeaders/City.h
         GameHeaders/SourceFiles/AudioSystem.cpp
         GameHeaders/AudioSystem.h
+        GameHeaders/MissileExplo.cpp
+        GameHeaders/MissileExplo.h
 )
 
 add_definitions(-DSDL_MAIN_HANDLED)

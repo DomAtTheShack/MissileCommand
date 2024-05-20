@@ -24,6 +24,8 @@ private:
 
     void createTrail();
     void TargetBase();
+
+    SDL_Color color;
 };
 
 #endif //MISSILECOMMAND_MISSILE_H

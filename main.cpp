@@ -14,7 +14,7 @@ int main(int argc, char* args []) {
     Game::handler = new Handler();
 
     game->init("Missile Command", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 700, false);
-
+    Game::audioSystem->SetVolume(25);
     Uint32 frameStart, frameTime;
     const int FPS = 60;
     const int frameDelay = 1000 / FPS;  // milliseconds per frame
