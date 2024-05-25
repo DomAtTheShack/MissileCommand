@@ -4,6 +4,7 @@
 
 #include "../GameObject.h"
 #include "../TextureManager.h"
+#include <iostream>
 
 GameObject::GameObject(const char *textureFile, int x, int y) {
     texture = TextureManager::LoadTexture(textureFile);
@@ -32,5 +33,22 @@ void GameObject::Render() {
 }
 
 void GameObject::HandleInput(SDL_Event *event) {}
+
+bool GameObject::CheckCollision(GameObject* b) const {
+    if(destRect.x < b->destRect.x + b->destRect.w &&
+            destRect.x + destRect.w > b->destRect.x &&
+            destRect.y < b->destRect.y + b->destRect.h &&
+            destRect.y + destRect.h > b->destRect.y)
+    {
+        std::cout << "HIT" << '\n';
+        return true;
+    }else
+        return false;
+}
+
+std::string GameObject::getObjectType()
+{
+    return "GameObject";
+}
 
 

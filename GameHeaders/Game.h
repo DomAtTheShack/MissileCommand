@@ -9,12 +9,18 @@
 #include "City.h"
 #include "AudioSystem.h"
 #include "Cursor.h"
+#include "Missile.h"
+#include "MissileExplo.h"
 
 class PlayerBase;
 class Cursor;
 
 #ifndef PROJECT_NAME_GAME_H
 #define PROJECT_NAME_GAME_H
+
+#define MISSILE_ID "Missile"
+#define GAMEOBJECT_ID "GameObject"
+
 
 
 class Game {
@@ -51,6 +57,9 @@ public:
     bool checkMissile(short x) const;
     short missilesLeft() const;
 
+    void addMissile();
+    static Missile* checkMissileCol(MissileExplo* explo);
+
 private:
     bool isRunning;
 
@@ -62,6 +71,8 @@ private:
 
     short missilesLoaded;
     short stacksLeft;
+
+    static std::vector<Missile*> enemyMissiles;
 };
 
 

@@ -8,6 +8,7 @@
 
 #include <SDL.h>
 #include <vector>
+#include <string>
 
 class GameObject {
 public:
@@ -17,17 +18,19 @@ public:
     virtual void Update();
     virtual void HandleInput(SDL_Event* event);
     virtual void Render();
+    virtual std::string getObjectType();
 
+    bool CheckCollision(GameObject *b) const;
 
+private:
+    SDL_Texture *texture;
 protected:
     int xPos;
     int yPos;
     SDL_Color color;
-private:
-    SDL_Texture *texture;
-protected:
     SDL_Rect srcRect;
     SDL_Rect destRect;
+
 };
 
 

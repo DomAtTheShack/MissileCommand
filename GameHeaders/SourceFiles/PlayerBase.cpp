@@ -90,6 +90,9 @@ void PlayerBase::HandleInput(SDL_Event* event) {
             case SDLK_SPACE:
                 fired = false;
                 break;
+            case SDLK_t:
+                currentGame.addMissile();
+                break;
             default:
                 break;
         }

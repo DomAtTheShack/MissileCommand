@@ -16,6 +16,7 @@ public:
 
     void Update() override;
     void Render() override;
+    std::string getObjectType() override;
 
 private:
     float killPointX, killPointY;
