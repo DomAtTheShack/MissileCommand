@@ -7,7 +7,7 @@
 #include "GameHeaders/AudioSystem.h"
 #include <random>
 
-Game *game = nullptr;
+Game* game = nullptr;
 
 int main(int argc, char* args []) {
     game = new Game();
@@ -21,7 +21,7 @@ int main(int argc, char* args []) {
     Uint32 secondStart = SDL_GetTicks();
     int frames = 0;
 
-    auto *player = new GameObject("assets/player.png", 100, 100);
+    auto *player = new GameObject("assets/images/player.png", 100, 100);
     Game::handler->addObject(player);
 
 

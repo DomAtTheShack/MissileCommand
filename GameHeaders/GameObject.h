@@ -22,6 +22,7 @@ public:
 protected:
     int xPos;
     int yPos;
+    SDL_Color color;
 private:
     SDL_Texture *texture;
 protected:

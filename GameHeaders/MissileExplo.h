@@ -5,6 +5,7 @@
 #ifndef MISSILECOMMAND_MISSILEEXPLO_H
 #define MISSILECOMMAND_MISSILEEXPLO_H
 
+#define MAX_RADIUS 40
 
 #include "GameObject.h"
 
@@ -19,9 +20,13 @@ public:
 
 private:
     short exploTimer;
+    bool next;
+    bool retractFlag;
+    bool firstShot;
     int radius;
     SDL_Color circleColor;
 
+    SDL_Color RandomColor();
 };
 
 

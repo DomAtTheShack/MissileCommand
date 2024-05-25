@@ -19,6 +19,8 @@ Game::Game() {
     background = nullptr;
     playerBase = nullptr;
     cursorG = nullptr;
+    missilesLoaded = 10;
+    stacksLeft = 3;
 }
 
 Game::~Game() = default;
@@ -60,8 +62,7 @@ void Game::init(const char *title, int xPos, int yPos, int width, int height, bo
         Game::handler->addObject(cursorG);
         audioSystem = new AudioSystem();
         audioSystem->LoadMP3("assets/sfx/back.mp3");
-        MissileExplo* explo = new MissileExplo(nullptr, 400,300);
-        Game::handler->addObject(explo);
+        audioSystem->PlayCurrentMP3();
         for(int i = 0;i<3;i++)
         {
             City* temp = new City("assets/images/city.png", (i * 180) + 30, 550);
@@ -115,4 +116,18 @@ void Game::clean() {
 
 bool Game::running() const {
     return isRunning;
+}
+
+void Game::missileShot()
+{
+    missilesLoaded--;
+}
+
+void Game::reload()
+{
+    missilesLoaded = 10;
+}
+
+short Game::missilesLeft() const {
+    return missilesLoaded;
 }

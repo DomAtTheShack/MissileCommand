@@ -22,7 +22,7 @@ void Cursor::Update() {
 
     // Screen boundaries (assumed screen size: 1280x720)
     const int screenWidth = 1200;
-    const int screenHeight = 600;
+    const int screenHeight = 550;
 
     // Adjust if out of bounds
     if (xPos < 0) xPos = 0;

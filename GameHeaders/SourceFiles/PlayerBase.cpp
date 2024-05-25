@@ -1,5 +1,4 @@
 #include "../PlayerBase.h"
-#include "../Cursor.h"
 #include "../Game.h"
 #include "../MissileTrail.h"
 #include "../Missile.h"
@@ -7,7 +6,10 @@
 #include <cmath>
 
 PlayerBase::PlayerBase(const char *textureFile, float x, float y, Cursor* cursor) :
-        GameObject(textureFile, x, y), cursorInPlay(cursor), fired(false) {}
+        GameObject(textureFile, x, y), cursorInPlay(cursor), fired(false), currentGame(Game::getInstance())
+{
+    color = {0,0,0,255};
+}
 
 PlayerBase::~PlayerBase() = default;
 
@@ -22,10 +24,13 @@ void PlayerBase::Update() {
     destRect.w = srcRect.w * 2;
     destRect.h = srcRect.h * 2;
     cursorInPlay->Update();
+    if(currentGame.missilesLeft() == 0)
+        currentGame.reload();
 }
 
 void PlayerBase::Render() {
     GameObject::Render();
+    RenderMissiles();
 }
 
 void PlayerBase::fire(float x, float y) {
@@ -50,6 +55,7 @@ void PlayerBase::fire(float x, float y) {
 
         Game::handler->addObject(new Missile(nullptr, xPos, yPos, scaledVX, scaledVY, x, y, true));
         Game::audioSystem->PlayCurrentWAV();
+        currentGame.missileShot();
     }
 }
 
@@ -86,6 +92,26 @@ void PlayerBase::HandleInput(SDL_Event* event) {
                 break;
             default:
                 break;
+        }
+    }
+}
+
+void PlayerBase::RenderMissiles()
+{
+    // Set the color for drawing
+    SDL_SetRenderDrawColor(Game::renderer, color.r, color.g, color.b, color.a);
+    int totalSquares = 0;
+
+    for (int i = 0; totalSquares < currentGame.missilesLeft(); ++i) {
+        int squaresInLevel = i + 1;
+        int levelY = BASE_Y + (i * (SQUARE_H)); // Adjust y position for each level
+        int startX = BASE_X - (squaresInLevel * (SQUARE_W + SPACING) / 2); // Center the level
+
+        for (int j = 0; j < squaresInLevel && totalSquares < currentGame.missilesLeft(); ++j) {
+                int squareX = startX + (j * (SQUARE_W + SPACING));
+                SDL_Rect square = {squareX, levelY, SQUARE_W, SQUARE_H};
+                SDL_RenderFillRect(Game::renderer, &square);
+                ++totalSquares; // Increment the total number of squares drawn
         }
     }
 }

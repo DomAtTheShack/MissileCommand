@@ -7,12 +7,18 @@
 
 
 #include "GameObject.h"
-#include "PlayerBase.h"
 #include "Cursor.h"
+#include "Game.h"
 
-class Cursor; // Forward declaration
 #define PLAYERBASE_X 585
 #define PLAYERBASE_Y 520
+#define BASE_X 590 // Starting x-coordinate for the pyramid
+#define BASE_Y 575 // Starting y-coordinate for the pyramid
+#define SQUARE_W 10
+#define SQUARE_H 8
+#define SPACING 10 // Space between squares
+
+class Cursor; // Forward declaration
 
 class PlayerBase : public GameObject {
 public:
@@ -28,8 +34,10 @@ private:
     Cursor* cursorInPlay;
     bool fired;
     static int gcd(int a, int b);
-
+    int missiles;
     bool isHit();
+    Game& currentGame;
+    void RenderMissiles();
 };
 
 

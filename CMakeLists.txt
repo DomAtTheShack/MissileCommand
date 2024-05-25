@@ -3,9 +3,6 @@ project(MissileCommand)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(${PROJECT_NAME}
-        main.cpp
-        GameHeaders/SourceFiles/Game.cpp
-        GameHeaders/Game.h
         GameHeaders/SourceFiles/TextureManager.cpp
         GameHeaders/TextureManager.h
         GameHeaders/SourceFiles/GameObject.cpp
@@ -29,8 +26,11 @@ add_executable(${PROJECT_NAME}
         GameHeaders/City.h
         GameHeaders/SourceFiles/AudioSystem.cpp
         GameHeaders/AudioSystem.h
-        GameHeaders/MissileExplo.cpp
+        GameHeaders/SourceFiles/MissileExplo.cpp
         GameHeaders/MissileExplo.h
+        main.cpp
+        GameHeaders/SourceFiles/Game.cpp
+        GameHeaders/Game.h
 )
 
 add_definitions(-DSDL_MAIN_HANDLED)
