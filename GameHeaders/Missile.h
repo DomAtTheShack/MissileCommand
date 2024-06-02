@@ -27,6 +27,9 @@ private:
     void TargetBase();
 
     SDL_Color color;
+
+    static std::pair<std::string, std::string> missileSFX;
+    static bool madeSFX;
 };
 
 #endif //MISSILECOMMAND_MISSILE_H

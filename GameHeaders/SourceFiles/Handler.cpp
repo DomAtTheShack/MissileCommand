@@ -78,7 +78,6 @@ void Handler::handleEvents(SDL_Event* pEvent)
             // Check if the object is of type PlayerBase
             try {
                 // Call Render and HandleInput methods
-                x->Render();
                 x->HandleInput(pEvent);
             } catch (const std::bad_typeid& e) {
                 std::cerr << "Error: typeid could not determine the type of the object." << std::endl;

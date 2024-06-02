@@ -65,13 +65,27 @@ if(WIN32)
     include_directories("${SDL2_IMAGE_INCLUDE_DIRS}")
     target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES})
 else()
+    # Find the libzip package
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(LIBZIP REQUIRED libzip)
+
+    include_directories(${LIBZIP_INCLUDE_DIRS})
+    link_directories(${LIBZIP_LIBRARY_DIRS})
+
+    # Find the OpenSSL package
+    find_package(OpenSSL REQUIRED)
+
+    # Add include directories for OpenSSL
+    include_directories(${OPENSSL_INCLUDE_DIR})
     find_package(PkgConfig REQUIRED)
     pkg_search_module(SDL2 REQUIRED sdl2)
     pkg_search_module(SDL2_image REQUIRED SDL2_image)
     pkg_search_module(SDL2_mixer REQUIRED SDL2_mixer)
-    include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_mixer_INCLUDE_DIRS})
-    target_link_libraries(MissileCommand PRIVATE ${SDL2_LIBRARIES} ${SDL2_image_LIBRARIES} ${SDL2_mixer_LIBRARIES})
+    include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_mixer_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/AssetsLib)
+    link_directories(${CMAKE_SOURCE_DIR}/AssetsLib)
+    target_link_libraries(MissileCommand PRIVATE ${SDL2_LIBRARIES} ${SDL2_image_LIBRARIES} ${SDL2_mixer_LIBRARIES} ${CMAKE_SOURCE_DIR}/AssetsLib/libdarwAssets.a ${LIBZIP_LIBRARIES} OpenSSL::SSL OpenSSL::Crypto)
 endif()
+
 
 
 set(SOURCE_FOLDER "${CMAKE_SOURCE_DIR}/assets")
