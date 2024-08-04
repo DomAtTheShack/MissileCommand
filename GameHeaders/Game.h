@@ -58,7 +58,7 @@ public:
     short missilesLeft() const;
 
     void addMissile();
-    static Missile* checkMissileCol(MissileExplo* explo);
+    static std::pair<Missile*, MissileTrail*>* checkMissileCol(MissileExplo* explo);
 
 private:
     bool isRunning;

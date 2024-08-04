@@ -47,10 +47,11 @@ void MissileExplo::Update()
         if (exploTimer >= 10)
             next = true;
     }
-    Missile* tempM = Game::checkMissileCol(this);
+    auto* tempM = Game::checkMissileCol(this);
     if(tempM != nullptr)
         {
-            Game::handler->removeObject(tempM);
+            Game::handler->removeObject(tempM->first);
+            //Game::handler->removeObject(tempM->second);
         }
 }
 

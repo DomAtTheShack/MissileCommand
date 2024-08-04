@@ -18,6 +18,10 @@ public:
     void Render() override;
     std::string getObjectType() override;
 
+    bool isFriendly() const;
+
+    MissileTrail *getTrail();
+
 private:
     float killPointX, killPointY;
     MissileTrail* Trail;
@@ -30,6 +34,7 @@ private:
 
     static std::pair<std::string, std::string> missileSFX;
     static bool madeSFX;
+
 };
 
 #endif //MISSILECOMMAND_MISSILE_H
