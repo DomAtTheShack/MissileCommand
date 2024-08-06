@@ -30,6 +30,8 @@ void GameObject::Update() {
 void GameObject::Render() {
     if(texture != nullptr)
         SDL_RenderCopy(Game::renderer, texture, &srcRect, &destRect);
+    if(Game::showBoaders)
+        SDL_RenderDrawRect(Game::renderer, &destRect);
 }
 
 void GameObject::HandleInput(SDL_Event *event) {}

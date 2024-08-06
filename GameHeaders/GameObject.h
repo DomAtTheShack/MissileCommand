@@ -13,7 +13,7 @@
 class GameObject {
 public:
     GameObject(const char* textureFile, int x, int y);
-    ~GameObject();
+    virtual ~GameObject();
 
     virtual void Update();
     virtual void HandleInput(SDL_Event* event);

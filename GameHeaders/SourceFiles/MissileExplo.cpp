@@ -8,6 +8,8 @@
 
 MissileExplo::MissileExplo(const char *textureFile, int x, int y) : GameObject(textureFile, x, y)
 {
+    xPos = x;
+    yPos = y;
     radius = 5;
     circleColor = RandomColor();
     exploTimer = 0;
@@ -20,6 +22,11 @@ MissileExplo::~MissileExplo() = default;
 
 void MissileExplo::Update()
 {
+    GameObject::Update();
+    destRect.w = radius * 2;
+    destRect.h = radius * 2;
+    destRect.x = xPos - radius;
+    destRect.y = yPos - radius;
     if(retractFlag)
     {
         if (next) {
@@ -51,7 +58,6 @@ void MissileExplo::Update()
     if(tempM != nullptr)
         {
             Game::handler->removeObject(tempM->first);
-            //Game::handler->removeObject(tempM->second);
         }
 }
 

@@ -89,6 +89,7 @@ void Handler::handleEvents(SDL_Event* pEvent)
 }
 
 void Handler::toDestroy() {
+    int startingSize = objectsToDestroy.size();
     for (int i = 0; i < objectsToDestroy.size(); i++) {
         GameObject* objToDestroy = objectsToDestroy[i];
 

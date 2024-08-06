@@ -60,6 +60,8 @@ public:
     void addMissile();
     static std::pair<Missile*, MissileTrail*>* checkMissileCol(MissileExplo* explo);
 
+    static bool showBoaders;
+
 private:
     bool isRunning;
 
