@@ -21,6 +21,7 @@ public:
     bool isFriendly() const;
 
     MissileTrail *getTrail();
+    void explode();
 
 private:
     float killPointX, killPointY;
@@ -34,6 +35,7 @@ private:
 
     static std::pair<std::string, std::string> missileSFX;
     static bool madeSFX;
+    bool explodeByHit;
 
 };
 

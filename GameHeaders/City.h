@@ -15,6 +15,10 @@ public:
     void Render() override;
     void Update() override;
 
+    int getX() const;
+
+    int getY() const;
+
     bool isHit();
 
 private:

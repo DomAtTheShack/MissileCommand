@@ -54,11 +54,8 @@ void MissileExplo::Update()
         if (exploTimer >= 10)
             next = true;
     }
-    auto* tempM = Game::checkMissileCol(this);
-    if(tempM != nullptr)
-        {
-            Game::handler->removeObject(tempM->first);
-        }
+    Game::checkMissileCol(this);
+
 }
 
 void MissileExplo::Render()
@@ -82,5 +79,8 @@ SDL_Color MissileExplo::RandomColor()
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis(0, 255);
 
-    return {static_cast<Uint8>(dis(gen)),static_cast<Uint8>(dis(gen)),static_cast<Uint8>(dis(gen)),static_cast<Uint8>(dis(gen))};
+    return {static_cast<Uint8>(dis(gen)),
+        static_cast<Uint8>(dis(gen)),
+        static_cast<Uint8>(dis(gen)),
+        static_cast<Uint8>(dis(gen))};
 }

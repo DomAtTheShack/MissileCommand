@@ -57,13 +57,15 @@ public:
     bool checkMissile(short x) const;
     short missilesLeft() const;
 
-    void addMissile();
-    static std::pair<Missile*, MissileTrail*>* checkMissileCol(MissileExplo* explo);
+    static void checkMissileCol(MissileExplo* explo);
 
     static bool showBoaders;
 
 private:
     bool isRunning;
+
+    void TargetCity(City* cityToHit, int startingX);
+
 
     Background* background;
     PlayerBase* playerBase;

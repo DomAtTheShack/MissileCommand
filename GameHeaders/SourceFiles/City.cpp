@@ -27,6 +27,16 @@ void City::Update()
 }
 
 
+int City::getX() const
+{
+    return xPos;
+}
+
+int City::getY() const
+{
+    return yPos;
+}
+
 bool City::isHit()
 {
     return hit;
