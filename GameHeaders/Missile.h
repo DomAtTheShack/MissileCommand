@@ -28,8 +28,7 @@ private:
     MissileTrail* Trail;
     bool baseMiss;
 
-    void createTrail();
-    void TargetBase();
+    float prevX, prevY;
 
     SDL_Color color;
 
@@ -37,6 +36,7 @@ private:
     static bool madeSFX;
     bool explodeByHit;
 
+    std::vector<std::pair<float, float>> trailPositions; // To store the previous positions
 };
 
 #endif //MISSILECOMMAND_MISSILE_H

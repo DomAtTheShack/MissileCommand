@@ -42,9 +42,8 @@ bool GameObject::CheckCollision(GameObject* b) const {
             destRect.y < b->destRect.y + b->destRect.h &&
             destRect.y + destRect.h > b->destRect.y)
     {
-        std::cout << "HIT" << '\n';
         return true;
-    }else
+    }
         return false;
 }
 

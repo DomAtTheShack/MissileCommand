@@ -43,20 +43,6 @@ int main(int argc, char* args []) {
             std::cout << "FPS: " << frames << std::endl;
             frames = 0;
             secondStart = SDL_GetTicks();
-
-            std::random_device rd;  // Seed for the random number engine
-            std::mt19937 gen(rd()); // Mersenne Twister engine
-
-            // Define the range [0, 700]
-            std::uniform_int_distribution<> distrib(0, 700);
-
-            // Generate a random number
-            int x = distrib(gen);
-            std::uniform_int_distribution<> distrib2(1, 10);
-            int velX = distrib2(gen);
-            int velY = distrib2(gen);
-
-            Game::handler->addObject(new Missile(nullptr,x,0,velX,velY,1000,1000,false));
         }
 
         frameTime = SDL_GetTicks() - frameStart;
