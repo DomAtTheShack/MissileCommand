@@ -4,7 +4,6 @@
 
 #include <vector>
 #include "GameObject.h"
-#include "GameID.h"
 
 #ifndef MISSILECOMMAND_HANDLER_H
 #define MISSILECOMMAND_HANDLER_H

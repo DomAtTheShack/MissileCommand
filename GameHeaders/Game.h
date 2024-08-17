@@ -12,16 +12,24 @@
 #include "Missile.h"
 #include "MissileExplo.h"
 
+#ifndef GAME_H
+#define GAME_H
+
 class PlayerBase;
 class Cursor;
 
-#ifndef PROJECT_NAME_GAME_H
-#define PROJECT_NAME_GAME_H
+
+
 
 #define MISSILE_ID "Missile"
 #define GAMEOBJECT_ID "GameObject"
 
+#define DEATH_BY_CITY 1
 
+#define EASY 101
+#define MEDIUM 102
+#define HARD 103
+#define IMMPOSSABLE 104
 
 class Game {
 
@@ -58,8 +66,14 @@ public:
     short missilesLeft() const;
 
     static void checkMissileCol(MissileExplo* explo);
+    static void checkCity(MissileExplo* explo);
+    static void checkCity(Missile* explo);
+
+    void checkGameStatus();
 
     static bool showBoaders;
+
+    short getGameStatus() const;
 
 private:
     bool isRunning;
@@ -77,7 +91,20 @@ private:
     short stacksLeft;
 
     static std::vector<Missile*> enemyMissiles;
+
+    short gameOver;
+
+    short currentDiffculty;
+    short currentRound;
+    void startRound();
+
+    bool roundInPlay;
+
+    void checkRoundStart();
+
+    static int randomNumberGen(int a, int b);
+
 };
 
 
-#endif //PROJECT_NAME_GAME_H
+#endif // GAME_H

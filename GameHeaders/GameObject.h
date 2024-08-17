@@ -20,6 +20,10 @@ public:
     virtual void Render();
     virtual std::string getObjectType();
 
+    SDL_Texture *getTexture();
+
+    void setTexture(SDL_Texture *textureToSet);
+
     bool CheckCollision(GameObject *b) const;
 
 private:

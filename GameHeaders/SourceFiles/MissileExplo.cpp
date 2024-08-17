@@ -55,7 +55,6 @@ void MissileExplo::Update()
             next = true;
     }
     Game::checkMissileCol(this);
-
 }
 
 void MissileExplo::Render()

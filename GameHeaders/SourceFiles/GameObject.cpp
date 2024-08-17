@@ -52,4 +52,12 @@ std::string GameObject::getObjectType()
     return "GameObject";
 }
 
+SDL_Texture* GameObject::getTexture() {
+    return texture;
+}
+
+void GameObject::setTexture(SDL_Texture* textureToSet) {
+    texture = textureToSet;
+}
+
 

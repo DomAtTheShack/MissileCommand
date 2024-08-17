@@ -35,8 +35,6 @@ int main(int argc, char* args []) {
         game->render();
         Game::handler->toDestroy();
 
-
-
         frames++;
 
         if (SDL_GetTicks() - secondStart >= 1000) {

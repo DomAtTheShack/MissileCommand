@@ -9,7 +9,6 @@ add_executable(${PROJECT_NAME}
         GameHeaders/GameObject.h
         GameHeaders/SourceFiles/Handler.cpp
         GameHeaders/Handler.h
-        GameHeaders/GameID.h
         GameHeaders/SourceFiles/Background.cpp
         GameHeaders/Background.h
         GameHeaders/SourceFiles/Cursor.cpp
@@ -31,6 +30,8 @@ add_executable(${PROJECT_NAME}
         main.cpp
         GameHeaders/SourceFiles/Game.cpp
         GameHeaders/Game.h
+        GameHeaders/SourceFiles/Timer.cpp
+        GameHeaders/Timer.h
 )
 
 add_definitions(-DSDL_MAIN_HANDLED)

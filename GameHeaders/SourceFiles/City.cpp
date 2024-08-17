@@ -5,12 +5,17 @@
 #include "../City.h"
 #include "../Game.h"
 #include <iostream>
+#include <libAssets.h>
+
+#include "../TextureManager.h"
 
 
-City::City(const char *textureFile, int x, int y) :
+City::City(const char *textureFile, int x, int y, const char *destTextureFile) :
         GameObject(textureFile, x, y)
 {
     hit = false;
+    destCity = TextureManager::LoadTexture(destTextureFile);
+    city = getTexture();
 }
 
 City::~City() = default;
@@ -44,4 +49,9 @@ bool City::isHit()
 
 void City::Render() {
     GameObject::Render();
+}
+
+void City::explode() {
+    setTexture(destCity);
+    hit = true;
 }
