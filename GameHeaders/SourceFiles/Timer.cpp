@@ -8,6 +8,12 @@ void Timer::start() {
     flag = false;
 }
 
+void Timer::restart() {
+    startTime = std::chrono::steady_clock::now();
+    running = true;
+    flag = false;
+}
+
 void Timer::update() {
     if (running) {
         auto currentTime = std::chrono::steady_clock::now();
@@ -21,4 +27,14 @@ void Timer::update() {
 
 bool Timer::isFinished() const {
     return flag;
+}
+
+void Timer::changeDuration(int dur)
+{
+    duration = dur;
+    restart();
+}
+
+bool Timer::isRunning() const {
+    return running;
 }

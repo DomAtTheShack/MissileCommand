@@ -11,14 +11,14 @@
 #include "Cursor.h"
 #include "Missile.h"
 #include "MissileExplo.h"
+#include "SourceFiles/EnemyMissileLauncher.h"
 
 #ifndef GAME_H
 #define GAME_H
 
 class PlayerBase;
 class Cursor;
-
-
+class EnemyMissileLauncher;
 
 
 #define MISSILE_ID "Missile"
@@ -75,11 +75,14 @@ public:
 
     short getGameStatus() const;
 
+    static int randomNumberGen(int a, int b);
+
+    City* getCity(int num);
+
 private:
     bool isRunning;
 
-    void TargetCity(City* cityToHit, int startingX);
-
+    EnemyMissileLauncher* launcher;
 
     Background* background;
     PlayerBase* playerBase;
@@ -89,8 +92,6 @@ private:
 
     short missilesLoaded;
     short stacksLeft;
-
-    static std::vector<Missile*> enemyMissiles;
 
     short gameOver;
 
@@ -102,7 +103,6 @@ private:
 
     void checkRoundStart();
 
-    static int randomNumberGen(int a, int b);
 
 };
 

@@ -11,6 +11,7 @@ Cursor::Cursor(const char *textureFile, int x, int y) : GameObject(textureFile, 
     velY = 0;
     velX = 0;
     fired = false;
+    cursSpeed = DEFAULT_CUR_SPEED;
 }
 
 Cursor::~Cursor() = default;
@@ -47,16 +48,16 @@ void Cursor::HandleInput(SDL_Event *event)
         switch (event->key.keysym.sym)
         {
             case SDLK_UP:
-                velY = -3;
+                velY = -cursSpeed;
                 break;
             case SDLK_DOWN:
-                velY = 3;
+                velY = cursSpeed;
                 break;
             case SDLK_LEFT:
-                velX = -3;
+                velX = -cursSpeed;
                 break;
             case SDLK_RIGHT:
-                velX = 3;
+                velX = cursSpeed;
                 break;
             default:
                 break;

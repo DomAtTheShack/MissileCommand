@@ -4,6 +4,7 @@
 
 #ifndef MISSILECOMMAND_CURSOR_H
 #define MISSILECOMMAND_CURSOR_H
+#define DEFAULT_CUR_SPEED 4
 
 
 #include "GameObject.h"
@@ -26,6 +27,8 @@ private:
     int velX;
     int velY;
     bool fired;
+
+    int cursSpeed;
 
 };
 
