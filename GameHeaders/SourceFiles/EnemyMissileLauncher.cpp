@@ -37,24 +37,31 @@ void EnemyMissileLauncher::createMissile(City* cityToHit, int startingX, int spe
     int velY = targetY; // The distance in Y direction
     int velX = targetX - startingX; // The distance in X direction
 
-    // Calculate the number of steps needed to reach the target
+    // Calculate the distance to the target
     double magnitude = sqrt(velX * velX + velY * velY);
 
-    // To reach the target exactly, scale the velocities so that the missile travels in exactly `magnitude` steps
+    // Normalize the velocity vector
     double normVelX = velX / magnitude;
     double normVelY = velY / magnitude;
 
-    // Choose a speed that corresponds to the distance
+    // Calculate speed (adjust as necessary for gameplay)
     double speed = magnitude / 200.0f;  // Example speed factor (adjust as needed)
+    if (speed < 0.5) speed = 0.5; // Set a minimum speed threshold
 
+    // Scale the normalized velocities by the speed
     velX = normVelX * speed;
     velY = normVelY * speed;
 
+    // Adjust the target coordinates if necessary
+    int adjustedTargetY = targetY + 30; // Adjusting based on game logic
+
+    // Create and add the missile object
     Game::handler->addObject(new Missile(nullptr, startingX, 0,
                                          velX, velY,
-                                         targetX, targetY + 30,
+                                         targetX, adjustedTargetY,
                                          false));
 }
+
 
 
 

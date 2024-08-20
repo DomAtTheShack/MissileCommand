@@ -25,6 +25,7 @@ public:
 
 private:
     float killPointX, killPointY;
+    double accumulatedErrorX, accumulatedErrorY;
     MissileTrail* Trail;
     bool baseMiss;
 
@@ -35,6 +36,9 @@ private:
     static std::pair<std::string, std::string> missileSFX;
     static bool madeSFX;
     bool explodeByHit;
+
+    void fixAccumulatedErrors();
+
 
     std::vector<std::pair<float, float>> trailPositions; // To store the previous positions
 };
