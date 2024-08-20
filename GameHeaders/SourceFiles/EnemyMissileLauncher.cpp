@@ -45,14 +45,14 @@ void EnemyMissileLauncher::createMissile(City* cityToHit, int startingX, int spe
     double normVelY = velY / magnitude;
 
     // Choose a speed that corresponds to the distance
-    double speed = magnitude / 340.0f;  // Example speed factor (adjust as needed)
+    double speed = magnitude / 200.0f;  // Example speed factor (adjust as needed)
 
     velX = normVelX * speed;
     velY = normVelY * speed;
 
     Game::handler->addObject(new Missile(nullptr, startingX, 0,
                                          velX, velY,
-                                         targetX, targetY,
+                                         targetX, targetY + 30,
                                          false));
 }
 
