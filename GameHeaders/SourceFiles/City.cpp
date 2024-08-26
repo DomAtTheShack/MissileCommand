@@ -10,8 +10,8 @@
 #include "../TextureManager.h"
 
 
-City::City(const char *textureFile, int x, int y, const char *destTextureFile) :
-        GameObject(textureFile, x, y)
+City::City(const char *textureFile, int x, int y, const char *destTextureFile, int num) :
+        GameObject(textureFile, x, y), cityNum(num)
 {
     hit = false;
     destCity = TextureManager::LoadTexture(destTextureFile);
@@ -54,4 +54,8 @@ void City::Render() {
 void City::explode() {
     setTexture(destCity);
     hit = true;
+}
+int City::getCityNum()
+{
+    return cityNum;
 }

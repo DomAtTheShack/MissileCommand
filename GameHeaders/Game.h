@@ -11,7 +11,7 @@
 #include "Cursor.h"
 #include "Missile.h"
 #include "MissileExplo.h"
-#include "SourceFiles/EnemyMissileLauncher.h"
+#include "EnemyMissileLauncher.h"
 
 #ifndef GAME_H
 #define GAME_H

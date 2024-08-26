@@ -9,7 +9,7 @@
 
 class City : public GameObject{
 public:
-    City(const char *textureFile, int x, int y, const char *destTextureFile);
+    City(const char *textureFile, int x, int y, const char *destTextureFile, int num) ;
     ~City();
 
     void Render() override;
@@ -23,11 +23,14 @@ public:
 
     void explode();
 
+    int getCityNum();
+
 private:
     bool hit;
 
     SDL_Texture* destCity;
     SDL_Texture * city;
+    const int cityNum;
 };
 
 

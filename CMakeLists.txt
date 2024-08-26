@@ -33,7 +33,8 @@ add_executable(${PROJECT_NAME}
         GameHeaders/SourceFiles/Timer.cpp
         GameHeaders/Timer.h
         GameHeaders/SourceFiles/EnemyMissileLauncher.cpp
-        GameHeaders/SourceFiles/EnemyMissileLauncher.h
+        GameHeaders/EnemyMissileLauncher.h
+        GameHeaders/CityTargets.h
 )
 
 add_definitions(-DSDL_MAIN_HANDLED)

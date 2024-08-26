@@ -6,10 +6,10 @@
 #define MISSILECOMMAND_ENEMYMISSILELAUNCHER_H
 
 
-#include "../GameObject.h"
-#include "../Timer.h"
-#include "../City.h"
-#include "../Game.h"
+#include "GameObject.h"
+#include "Timer.h"
+#include "City.h"
+#include "Game.h"
 
 class EnemyMissileLauncher : public GameObject
         {
@@ -26,10 +26,11 @@ public:
 
 private:
 
-    void createMissile(City* cityToHit, int startingX, int speedFactor);
+    void createMissile(City* cityToHit);
     Timer* missileTimer;
     int numberOfMissiles;
     Game* game;
+
 };
 
 
