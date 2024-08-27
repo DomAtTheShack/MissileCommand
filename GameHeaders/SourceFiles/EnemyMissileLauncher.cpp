@@ -35,10 +35,11 @@ void EnemyMissileLauncher::createMissile(City* cityToHit)
 {
 
     CityTarget target = getCity(cityToHit->getCityNum(),Game::randomNumberGen(0,2));
+
     // Create and add the missile object
     Game::handler->addObject(new Missile(nullptr, target.startingX, 0,
                                          target.velX, target.velY,
-                                         cityToHit->getX() + target.killPointModX, cityToHit->getY() + target.killPointModY,
+                                         0, 0,
                                          false));
 }
 
