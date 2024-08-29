@@ -35,6 +35,8 @@ add_executable(${PROJECT_NAME}
         GameHeaders/SourceFiles/EnemyMissileLauncher.cpp
         GameHeaders/EnemyMissileLauncher.h
         GameHeaders/CityTargets.h
+        GameHeaders/SourceFiles/SettingsWindow.cpp
+        GameHeaders/SourceFiles/SettingsWindow.h
 )
 
 add_definitions(-DSDL_MAIN_HANDLED)

@@ -4,7 +4,7 @@
 
 #ifndef MISSILECOMMAND_CURSOR_H
 #define MISSILECOMMAND_CURSOR_H
-#define DEFAULT_CUR_SPEED 4
+#define DEFAULT_CUR_SPEED 6
 
 
 #include "GameObject.h"

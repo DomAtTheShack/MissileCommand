@@ -79,6 +79,8 @@ public:
 
     City* getCity(int num);
 
+    void testLaunch();
+
 private:
     bool isRunning;
 

@@ -40,6 +40,7 @@ int main(int argc, char* args []) {
             std::cout << "FPS: " << frames << std::endl;
             frames = 0;
             secondStart = SDL_GetTicks();
+            game->testLaunch();
         }
 
         frameTime = SDL_GetTicks() - frameStart;
