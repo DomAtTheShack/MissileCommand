@@ -45,42 +45,27 @@ void Cursor::HandleInput(SDL_Event *event)
 {
     if (event->type == SDL_KEYDOWN)
     {
-        switch (event->key.keysym.sym)
-        {
-            case SDLK_UP:
-                velY = -cursSpeed;
-                break;
-            case SDLK_DOWN:
-                velY = cursSpeed;
-                break;
-            case SDLK_LEFT:
-                velX = -cursSpeed;
-                break;
-            case SDLK_RIGHT:
-                velX = cursSpeed;
-                break;
-            default:
-                break;
-        }
+            if(event->key.keysym.sym == SDLK_UP)
+                velY = -DEFAULT_CUR_SPEED;
+            if(event->key.keysym.sym == SDLK_DOWN)
+                velY = DEFAULT_CUR_SPEED;
+            if(event->key.keysym.sym == SDLK_RIGHT)
+                velX = DEFAULT_CUR_SPEED;
+            if(event->key.keysym.sym == SDLK_LEFT)
+                velX = -DEFAULT_CUR_SPEED;
+            if(event->key.keysym.sym == SDLK_SPACE)
+                fired = false;
     }
     if (event->type == SDL_KEYUP)
     {
-        switch (event->key.keysym.sym)
-        {
-            case SDLK_UP:
-            case SDLK_DOWN:
-                velY = 0;
-                break;
-            case SDLK_LEFT:
-            case SDLK_RIGHT:
-                velX = 0;
-                break;
-            case SDLK_SPACE:
-                fired = false;
-                break;
-            default:
-                break;
-        }
+        if(event->key.keysym.sym == SDLK_UP ||
+            event->key.keysym.sym == SDLK_DOWN)
+            velY = 0;
+        if(event->key.keysym.sym == SDLK_RIGHT ||
+                event->key.keysym.sym == SDLK_LEFT)
+            velX = 0;
+        if(event->key.keysym.sym == SDLK_SPACE)
+            fired = false;
     }
 }
 

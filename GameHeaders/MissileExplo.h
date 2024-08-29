@@ -5,7 +5,7 @@
 #ifndef MISSILECOMMAND_MISSILEEXPLO_H
 #define MISSILECOMMAND_MISSILEEXPLO_H
 
-#define MAX_RADIUS 40
+#define MAX_RADIUS 50
 
 #include "GameObject.h"
 
