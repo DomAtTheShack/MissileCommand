@@ -12,8 +12,7 @@
 /**
  * This holds the current zip file information as the NAME of the file, DATE it was created, and the SHA256 of the file
  */
-struct info
-{
+struct info {
     std::string NAME;
     std::string DATE;
 };
@@ -24,7 +23,7 @@ struct info
  * @param assetsFileName the assets.darw file to be loaded in
  * @return returns true if everything worked as expected and loaded in if something failed then returns false
  */
-bool initAssets(char* assetsFileName);
+bool initAssets(char *assetsFileName);
 
 /**
  * This loads the asset info a struct and loads with the name of the file, date it was created, and the sha256 of the file\n
@@ -46,7 +45,7 @@ bool listAssets();
  * @param fileInDarw the path to the assets file in the archive
  * @return returns the temporary file path and the fileName or if is doesn't find it or can't write it then it returns NULL
  */
-std::pair<std::string, std::string> getAsset(const std::string& fileInDarw);
+std::pair<std::string, std::string> getAsset(const std::string &fileInDarw);
 
 
 /**
@@ -62,7 +61,7 @@ std::string getTempDirectory();
  * @param extractedFilePath the current temp file to remove
  * @return this will return true if deleted if not then it will return false
  */
-bool removeCurrentTempFile(const std::pair<std::string, std::string>& file);
+bool removeCurrentTempFile(const std::pair<std::string, std::string> &file);
 
 /**
  * More of an internal method that only works if the file has been initialized
@@ -75,7 +74,7 @@ bool infoLoaded();
  * @param filePath the path to the file that will be checksum
  * @return this returns the string sha256 checksum of the passed in file
  */
-std::string sha256(const std::string& filePath);
+std::string sha256(const std::string &filePath);
 
 /**
  * When done with the assets file use this to release memory and reset variables in this library
@@ -88,7 +87,7 @@ std::string generateTempFileName(std::string input);
 /**
  * Holds the assets file in memory
  */
-extern zip* z;
+extern zip *z;
 
 /**
  * turned true when assetsInfo loaded successfully

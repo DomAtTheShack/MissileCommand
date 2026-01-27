@@ -11,6 +11,9 @@
 class Handler
         {
 public:
+
+    ~Handler();
+
     void Update();
     void Render();
 

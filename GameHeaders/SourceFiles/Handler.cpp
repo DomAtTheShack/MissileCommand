@@ -13,6 +13,22 @@ bool Handler::down = false;
 bool Handler::right = false;
 bool Handler::left = false;
 
+Handler::~Handler() {
+    // Clean up any remaining objects in the main list
+    for (GameObject* obj : GameObjects) {
+        delete obj;
+    }
+    GameObjects.clear();
+
+    // Clean up anything that was pending destruction
+    for (GameObject* obj : objectsToDestroy) {
+        delete obj;
+    }
+    objectsToDestroy.clear();
+
+    std::cout << "Handler and all GameObjects destroyed." << std::endl;
+}
+
 bool Handler::isUp() {
     return up;
 }
@@ -89,20 +105,11 @@ void Handler::handleEvents(SDL_Event* pEvent)
 }
 
 void Handler::toDestroy() {
-    int startingSize = objectsToDestroy.size();
-    for (int i = 0; i < objectsToDestroy.size(); i++) {
-        GameObject* objToDestroy = objectsToDestroy[i];
-
-        // Find the corresponding object in GameObjects vector
+    for (GameObject* objToDestroy : objectsToDestroy) {
         auto it = std::find(GameObjects.begin(), GameObjects.end(), objToDestroy);
         if (it != GameObjects.end()) {
-            // Erase the object from GameObjects vector
             GameObjects.erase(it);
-            // Deallocate memory
             delete objToDestroy;
-        } else {
-            // Object not found in GameObjects vector
-            std::cerr << "Object to destroy not found in GameObjects vector." << std::endl;
         }
     }
     objectsToDestroy.clear();

@@ -37,6 +37,8 @@ public:
     Game();
     ~Game();
 
+    bool isValid();
+
     static Game& getInstance() {
         static Game instance;
         return instance;

@@ -48,7 +48,7 @@ void EnemyMissileLauncher::createMissile(City* cityToHit)
 
 void EnemyMissileLauncher::StartMissile(int difficulty)
 {
-    numberOfMissiles = (difficulty % 10) * 10;
+    numberOfMissiles = (difficulty % 10) * 2;
 
     int thisMax = Game::randomNumberGen(2, 4);
 

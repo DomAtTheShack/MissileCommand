@@ -7,12 +7,14 @@
 
 #include "GameObject.h"
 
-class City : public GameObject{
+class City : public GameObject {
 public:
-    City(const char *textureFile, int x, int y, const char *destTextureFile, int num) ;
+    City(const char *textureFile, int x, int y, const char *destTextureFile, int num);
+
     ~City();
 
     void Render() override;
+
     void Update() override;
 
     int getX() const;
@@ -28,8 +30,8 @@ public:
 private:
     bool hit;
 
-    SDL_Texture* destCity;
-    SDL_Texture * city;
+    SDL_Texture *destCity;
+    SDL_Texture *city;
     const int cityNum;
 };
 

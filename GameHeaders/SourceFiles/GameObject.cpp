@@ -13,7 +13,12 @@ GameObject::GameObject(const char *textureFile, int x, int y) {
     yPos = y;
 }
 
-GameObject::~GameObject() = default;
+GameObject::~GameObject() {
+    if (texture != nullptr) {
+        SDL_DestroyTexture(texture);
+        texture = nullptr;
+    }
+}
 
 void GameObject::Update() {
     srcRect.h = 32;
