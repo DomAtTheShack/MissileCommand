@@ -2,6 +2,8 @@
 #define MISSILECOMMAND_WINDOW_H
 
 #include <SDL.h>
+#include <SDL_ttf.h>
+
 #include "Handler.h"
 
 class Window {
@@ -26,6 +28,9 @@ public:
     virtual void handleEvents();
 
     void handleBasicEvents(SDL_Event &event);
+
+    static bool showingBoarders();
+
     void setTransferred(bool state) { isTransferred = state; }
     bool needsTransfer() const { return transferRequested; }
     void requestTransfer() { transferRequested = true; }
@@ -41,21 +46,36 @@ public:
     SDL_Window* getWindow() const { return window; }
     SDL_Renderer *getRenderer() const { return renderer; }
 
+    void setNextWindow(Window* win) { storedNextWindow = win; }
+    Window* getNextWindow() { return storedNextWindow; }
+
+    Handler *handler = nullptr;
+    static SDL_Window* window;
+    static SDL_Renderer* renderer;
+    static std::pair<int, int> getMousePos();
+    static TTF_Font* defaultFont;
+
+
+
+private:
+    static int mouseX, mouseY;
+    static bool showBoarders;
+    const char* fontFile = "assets/Bungee-Regular.ttf";
 
 protected:
 
 
     // Protected so other windows can access them directly
-    SDL_Window* window = nullptr;
-    SDL_Renderer* renderer = nullptr;
-
     const char* title;
     int xPos, yPos, width, height;
     bool fullscreen;
-    Handler *handler = nullptr;
     bool running = false;
     bool isTransferred = false;
     bool transferRequested = false;
+    bool mouseDown = false;
+    SDL_Color White = {255,255, 255};
+    SDL_Color Black = {0,0, 0};
+    Window* storedNextWindow = nullptr;
 
 };
 

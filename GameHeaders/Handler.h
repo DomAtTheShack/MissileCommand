@@ -17,6 +17,10 @@ public:
     void Update();
     void Render();
 
+    void removeAllObjects();
+
+    void RemoveAllObjects();
+
     void addObject(GameObject *object);
     void removeObject(GameObject *object);
 

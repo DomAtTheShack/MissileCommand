@@ -6,12 +6,37 @@
 #include <iostream>
 #include <ostream>
 #include <SDL.h>
+#include <unistd.h>
+#include "../Button.h"
+
 #include "../Window.h"
+#include "../ClickableObject.h"
 
 
 
 void SettingsWindow::init() {
     std::cout << "Settings Window Initialized!" << std::endl;
+    Button* btn = new Button(100, 100, 128, 32, "Hello");
+
+    btn->onClick = [this]() {
+        std::cout << "Transferring Window..." << std::endl;
+
+        // 1. Clear old objects so they don't appear in the new window
+        handler->removeAllObjects();
+
+        // 2. Create the new Window Wrapper (Reusing Renderer/Handler)
+        Window* nextWin = Window::transferWindow(this);
+
+        // 3. Configure the new window
+        nextWin->setWindowSize(128, 64);
+        nextWin->setWindowTitle("Balls");
+
+        // 4. THE FIX: Store it and Request Transfer
+        this->setNextWindow(nextWin);
+        this->requestTransfer(); // Sets transferRequested = true
+    };
+
+    handler->addObject(btn);
 }
 
 void SettingsWindow::clean() {
@@ -21,20 +46,15 @@ void SettingsWindow::clean() {
 void SettingsWindow::render() {
     SDL_RenderClear(renderer);
     handler->Render();
-    SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderPresent(renderer);
 }
 
 void SettingsWindow::handleEvents() {
-    SDL_Event event;
-    while (SDL_PollEvent(&event)) {
-        // 1. Call Parent "Basic" Logic
-        handleBasicEvents(event);
+    Window::handleEvents();
 
-        // 2. specific code for this window
-        if (event.type == SDL_MOUSEBUTTONUP) {
-            this->transferRequested = true;
-        }
-    }
+
 }
+
+
 

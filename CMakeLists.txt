@@ -40,6 +40,10 @@ add_executable(${PROJECT_NAME}
         GameHeaders/SourceFiles/Window.cpp
         GameHeaders/Window.h
         GameHeaders/WindowManager.h
+        GameHeaders/SourceFiles/ClickableObject.cpp
+        GameHeaders/ClickableObject.h
+        GameHeaders/SourceFiles/Button.cpp
+        GameHeaders/Button.h
 )
 
 add_definitions(-DSDL_MAIN_HANDLED)
@@ -74,25 +78,48 @@ if(WIN32)
     include_directories("${SDL2_IMAGE_INCLUDE_DIRS}")
     target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES})
 else()
-    # Find the libzip package
+    # 1. Setup PkgConfig
     find_package(PkgConfig REQUIRED)
+
+    # 2. Find Dependencies using PkgConfig (Consistent naming)
     pkg_check_modules(LIBZIP REQUIRED libzip)
 
-    include_directories(${LIBZIP_INCLUDE_DIRS})
-    link_directories(${LIBZIP_LIBRARY_DIRS})
+    # Use pkg_search_module for ALL SDL components to ensure variables match
+    pkg_search_module(SDL2 REQUIRED sdl2)
+    pkg_search_module(SDL2_IMAGE REQUIRED SDL2_image)
+    pkg_search_module(SDL2_MIXER REQUIRED SDL2_mixer)
+    pkg_search_module(SDL2_TTF REQUIRED SDL2_ttf)  # <--- This fixes the TTF link error
 
-    # Find the OpenSSL package
+    # 3. Find OpenSSL (Standard CMake is fine here)
     find_package(OpenSSL REQUIRED)
 
-    # Add include directories for OpenSSL
-    include_directories(${OPENSSL_INCLUDE_DIR})
-    find_package(PkgConfig REQUIRED)
-    pkg_search_module(SDL2 REQUIRED sdl2)
-    pkg_search_module(SDL2_image REQUIRED SDL2_image)
-    pkg_search_module(SDL2_mixer REQUIRED SDL2_mixer)
-    include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_mixer_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/AssetsLib)
-    link_directories(${CMAKE_SOURCE_DIR}/AssetsLib)
-    target_link_libraries(MissileCommand PRIVATE ${SDL2_LIBRARIES} ${SDL2_image_LIBRARIES} ${SDL2_mixer_LIBRARIES} ${CMAKE_SOURCE_DIR}/AssetsLib/libdarwAssets.a ${LIBZIP_LIBRARIES} OpenSSL::SSL OpenSSL::Crypto)
+    # 4. Include Directories (Using the UPPERCASE variables from pkg_search_module)
+    include_directories(
+            ${LIBZIP_INCLUDE_DIRS}
+            ${OPENSSL_INCLUDE_DIR}
+            ${SDL2_INCLUDE_DIRS}
+            ${SDL2_IMAGE_INCLUDE_DIRS}
+            ${SDL2_MIXER_INCLUDE_DIRS}
+            ${SDL2_TTF_INCLUDE_DIRS}
+            ${CMAKE_SOURCE_DIR}/AssetsLib
+    )
+
+    link_directories(
+            ${LIBZIP_LIBRARY_DIRS}
+            ${CMAKE_SOURCE_DIR}/AssetsLib
+    )
+
+    # 5. Link Libraries
+    target_link_libraries(MissileCommand PRIVATE
+            ${SDL2_LIBRARIES}
+            ${SDL2_TTF_LIBRARIES}     # <--- Now definitely defined
+            ${SDL2_IMAGE_LIBRARIES}
+            ${SDL2_MIXER_LIBRARIES}
+            ${CMAKE_SOURCE_DIR}/AssetsLib/libdarwAssets.a
+            ${LIBZIP_LIBRARIES}
+            OpenSSL::SSL
+            OpenSSL::Crypto
+    )
 endif()
 
 

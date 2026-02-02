@@ -1,5 +1,17 @@
 #include "../Window.h"
 
+#include <iostream>
+#include <ostream>
+#include <SDL_ttf.h>
+
+SDL_Renderer *Window::renderer = nullptr;
+SDL_Window *Window::window = nullptr;
+int Window::mouseX = 0;
+int Window::mouseY = 0;
+bool Window::showBoarders = false;
+TTF_Font* Window::defaultFont = nullptr;
+
+
 Window::Window(const char* title, int xPos, int yPos, int width, int height, bool fullscreen) 
     : title(title), xPos(xPos), yPos(yPos), width(width), height(height), fullscreen(fullscreen) {
     init();
@@ -30,6 +42,7 @@ void Window::init() {
         window = SDL_CreateWindow(title, xPos, yPos, width, height, flags);
         
         if (window) {
+            SDL_SetWindowResizable(window, SDL_FALSE);
             renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
             if (renderer) {
                 SDL_RenderClear(renderer);
@@ -37,6 +50,8 @@ void Window::init() {
                 running = true;
             }
         }
+        TTF_Init();
+        defaultFont = TTF_OpenFont(fontFile, 24);
     }
 }
 
@@ -70,18 +85,50 @@ void Window::handleEvents() {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         handleBasicEvents(event); // Call the internal basic logic
+
+        if (handler != nullptr) {
+            handler->handleEvents(&event);
+        }
     }
 }
 
 void Window::handleBasicEvents(SDL_Event& event) {
     if (event.type == SDL_QUIT) running = false;
 
-    if (event.type == SDL_KEYDOWN) { //(ALT+ENTER Fullscreen)
+    // Always update mouse position on motion
+    if (event.type == SDL_MOUSEMOTION) {
+        mouseX = event.motion.x;
+        mouseY = event.motion.y;
+    }
+    // Also update on clicks (sometimes motion doesn't fire if you just click)
+    if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_MOUSEBUTTONUP) {
+        mouseX = event.button.x;
+        mouseY = event.button.y;
+    }
+
+    if (event.type == SDL_KEYDOWN) {
         if (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT)) {
             fullscreen = !fullscreen;
             SDL_SetWindowFullscreen(window, fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
         }
     }
+
+    const Uint8* currentKeyStates = SDL_GetKeyboardState(nullptr);
+
+    if (event.key.keysym.sym == SDLK_b) {
+        // Only run if this is the initial press (repeat is 0)
+        if (event.key.repeat == 0) {
+            if (currentKeyStates[SDL_SCANCODE_F3]) {
+                showBoarders = !showBoarders;
+                std::cout << "F3 + B pressed. ShowBorders: " << (showBoarders ? "On" : "Off") << std::endl;
+            }
+        }
+    }
+
+}
+
+bool Window::showingBoarders() {
+    return showBoarders;
 }
 
 void Window::update() {
@@ -106,4 +153,8 @@ bool Window::isRunning() const {
 Window* Window::transferWindow(Window* windowToTransfer) {
     return new Window("Transfered Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 320, 180, false,
         windowToTransfer->getRenderer(), windowToTransfer->getWindow(), windowToTransfer->getHandler());
+}
+
+std::pair<int, int> Window::getMousePos() {
+    return {mouseX, mouseY};
 }

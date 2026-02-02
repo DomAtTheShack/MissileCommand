@@ -1,21 +1,31 @@
+#ifndef WINDOWMANAGER_H
+#define WINDOWMANAGER_H
+
+#include "Window.h"
+
 class WindowManager {
 public:
-    static Window* updateWindow(Window* current) {
-        if (current->needsTransfer()) {
-            // Mark as transferred so the destructor doesn't touch SDL or the Handler
-            current->setTransferred(true);
+    static Window* updateWindow(Window* currentWindow) {
+        // Check if the current window wants to retire
+        if (currentWindow->needsTransfer() && currentWindow->getNextWindow() != nullptr) {
+            
+            // 1. Grab the new window
+            Window* newWindow = currentWindow->getNextWindow();
 
-            Window* nextWindow = new Window("Game Scene",
-                                            SDL_WINDOWPOS_CENTERED,
-                                            SDL_WINDOWPOS_CENTERED,
-                                            1200, 700, false,
-                                            current->getRenderer(),
-                                            current->getWindow(),
-                                            current->getHandler());
+            // 2. IMPORTANT: Tell the old window "Do not destroy SDL stuff"
+            // If we don't do this, the destructor will kill the Renderer/Handler
+            currentWindow->setTransferred(true);
 
-            delete current; // Safe now because isTransferred = true
-            return nextWindow;
+            // 3. Delete the old C++ Wrapper
+            delete currentWindow;
+
+            // 4. Return the new pointer to main()
+            return newWindow;
         }
-        return current;
+
+        // If no transfer needed, just keep using the same window
+        return currentWindow;
     }
 };
+
+#endif

@@ -3,6 +3,8 @@
 #include <SDL.h>
 #include <iostream>
 
+#include "../Window.h"
+
 SDL_Texture *TextureManager::LoadTexture(const char *fileName)
 {
     if(fileName != nullptr) {
@@ -12,7 +14,7 @@ SDL_Texture *TextureManager::LoadTexture(const char *fileName)
             return nullptr;
         }
 
-        SDL_Texture *texture = SDL_CreateTextureFromSurface(Game::renderer, tempSurface);
+        SDL_Texture *texture = SDL_CreateTextureFromSurface(Window::renderer, tempSurface);
         if (!texture) {
             std::cerr << "Unable to create texture from " << fileName << ". SDL Error: " << SDL_GetError() << std::endl;
         }
@@ -25,7 +27,7 @@ SDL_Texture *TextureManager::LoadTexture(const char *fileName)
 }
 SDL_Texture* TextureManager::LoadBMP(const char* textureFile) {
     SDL_Surface* tempSurface = SDL_LoadBMP(textureFile);
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(Game::renderer, tempSurface);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(Window::renderer, tempSurface);
     SDL_FreeSurface(tempSurface);
     return texture;
 }

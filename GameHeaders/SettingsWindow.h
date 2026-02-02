@@ -3,6 +3,8 @@
 
 #include "Window.h"
 
+using namespace std;
+
 class SettingsWindow : public Window {
 public:
     // Constructor passes arguments up to the Parent (Window)
@@ -21,6 +23,7 @@ public:
     void render();
 
     void handleEvents();
+
 };
 
 #endif

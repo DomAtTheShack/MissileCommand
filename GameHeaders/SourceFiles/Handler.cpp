@@ -14,17 +14,7 @@ bool Handler::right = false;
 bool Handler::left = false;
 
 Handler::~Handler() {
-    // Clean up any remaining objects in the main list
-    for (GameObject* obj : GameObjects) {
-        delete obj;
-    }
-    GameObjects.clear();
-
-    // Clean up anything that was pending destruction
-    for (GameObject* obj : objectsToDestroy) {
-        delete obj;
-    }
-    objectsToDestroy.clear();
+    removeAllObjects();
 
     std::cout << "Handler and all GameObjects destroyed." << std::endl;
 }
@@ -71,6 +61,20 @@ void Handler::Render() {
     for (GameObject *x: GameObjects) {
         x->Render();
     }
+}
+
+void Handler::removeAllObjects() {
+    // Clean up any remaining objects in the main list
+    for (GameObject* obj : GameObjects) {
+        delete obj;
+    }
+    GameObjects.clear();
+
+    // Clean up anything that was pending destruction
+    for (GameObject* obj : objectsToDestroy) {
+        delete obj;
+    }
+    objectsToDestroy.clear();
 }
 
 void Handler::removeObject(GameObject* object) {

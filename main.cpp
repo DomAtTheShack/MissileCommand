@@ -13,18 +13,17 @@
 int main(int argc, char* args []) {
     // Game* game = new Game();
     // Game::handler = new Handler();
-    Window* window = new SettingsWindow("Settings", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 300, 200, false);
+    Window* window = new SettingsWindow("Settings", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
 
     //game->init("Missile Command", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 700, false);
-    Game::audioSystem->SetVolume(25);
+    //Game::audioSystem->SetVolume(25);
     Uint32 frameStart, frameTime;
-    const int FPS = 60;
+    const int FPS = 120;
     const int frameDelay = 1000 / FPS;  // milliseconds per frame
     Uint32 secondStart = SDL_GetTicks();
     int frames = 0;
 
-    // auto *player = new GameObject("assets/images/player.png", 100, 100);
-    // Game::handler->addObject(player);
+
 
 
     while (window->isRunning()) {
